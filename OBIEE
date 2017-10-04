@@ -234,3 +234,472 @@ Unlike a repository variable, there are as many instances of a session variable 
 OBIEE can be plugged on Relational Databases, Cubes or Flat files, with the following constraints :
 The sources must be modeled as star schemas or snowflakes schemas in order to have an efficient and safe behavior.
 In case of multiple sources directly in OBIee used together, be aware that OBIee will conduct the needed joins itself, and OBIee is not a database.
+
+Q. What is OBIEE?
+OBIEE stands for Oracle Business Intelligence Enterprise Edition. The current version is 11g and  immediate previous version is 10.1.3
+OBIEE is  Analytical (Reporting/Publishing ) Software Engine which facilitates data analysis, mining and publishing capabilities on top of physical data ware house.
+The base product of OBIEE is Siebel Analytics which was a product of Siebel Corporation and later this was taken over by Oracle Corporation and re-named as OBIEE.
+ 
+Q. What are BI Application?
+OBIEE Analytic engine provides core Business Intelligence and Analytical capabilities on any DW application.
+This product allows to create a framework / model manually on any type of dataware house.
+We can logically convert relational schema to dimensional schema.
+Supports Reporting, Dashboard and publishing functionality
+Provides all features which analytic perform does including following below..
+Apps for common industry analytical processing snow as service Analytics, Sales Analytics , Pharma Analytics, Finance HR etc.
+Prebuilt Dashboard and Reports on business specific application.
+ 
+Q. Define repository in terms of OBIEE?
+Repository stores the Meta data information. The extension of the repository file is “.rpd”.   With OBIEE Server, all the rules needed for security, data modeling, aggregate navigation, caching, and connectivity is stored in metadata repositories. Each metadata repository can store multiple business models. OBIEE Server can access multiple repositories
+Repository is divided into three layer,
+1. Physical –    Represents the data Sources
+2. Business –   model the Data sources into Facts and Dimension and apply business logic
+3. Presentation – Specifies the user’s view of the data rendered in OBIEE answers client
+ 
+Q. What is the end to end life cycle of OBIEE?
+OBIEE life cycle:
+1. Gather Business Requirements
+2. Identify source systems
+3. Design ETL to load data to the Data Warehouse
+4. Build a repository
+5. Build dashboards and reports
+6. Define security (LDAP or External table)
+7. Based on performance, decide on aggregations and/or caching mechanism.
+8. Testing and QA.
+ 
+Q. Explain OBIEE Architecture?
+OBIEE Architecture and how it works for easy understanding
+For Beginners this would give you a clear idea how OBIEE works
+A request is made by the Users through Answers and sent to the Presentation server. The Presentation Server converts the request into logical SQL and sent to the BI server. The BI server converts logical SQL into physical SQL and sent it to the database. The result get back to the user through the same path
+ 
+Q. What are the three layers of RPD?
+RPD(Repository) is divided into 3 layers
+1. Physical Layer: This layer is used for
+a. Importing data
+b. Creating Aliases
+c. Building physical joins
+ 
+Explore OBIEE Sample Resumes! Download & Edit, Get Noticed by Top Employers!
+Download Now!
+ 
+d. Setting up connection pool and its properties
+e. Enabling/ Disabling cache for individual table
+ 
+2. BMM(Business Model & Mapping) Layer:This layer is used for
+a. Writing the business logic
+b. Creating Logical columns and tables
+c. Creating hierarchy
+d. Creating LBM (level based measures)
+e. Creating shares
+f. Creating Time series functions
+g. Creating Fragmentation on tables
+h. Creating filters on repository
+ 
+3. Presentation Layer:This layer is used for
+a. Arranging the data for users view (Folder Structure)
+b. Creating Presentation hierarchy
+c. Creating Implicit Fact column
+d. Implementing Column level security
+ 
+Q. What is ETL Plan?
+ETL stands for Extract, Transform and Load. ETL Plan is to design the flow of the metadata
+Extract ———————->  Transform  ———————->  Load 
+Source                                     Transformation Rule                    Target
+Source Definition: It is the structure of the source table from which the data is extracted
+Target Definition: It is the structure of the target table to which the data is loaded
+Transformation Rule: It is the business logic used for transforming the data
+ 
+Q. What is OLTP and OLAP?
+OLTP stands for OnLine Transaction Processing. It is designed for business transaction process. It is designed for fast storing of data. The data here is in normalized form without data duplicates
+OLAP stands for OnLine Analytical Processing. It is designed for analyzing the business. It is designed for fast retrieving of data. The data here is in de-normalized form with data duplicates
+OLTP————————-> ETL——————–> OLAP
+ 
+OLTP
+OLAP
+To support business transaction processing
+To support decision making process
+Volatile data
+Non volatile data
+Current data
+Historical data
+Detailed data
+Summary data
+Designed for running the business
+Designed for analyzing the business
+Normalization
+De-normalization
+Application oriented data 
+Subject oriented data
+ER modelling
+Dimensional modelling
+NOTE: ETL stands for extract transform and load
+Q. What is Star schema and SnowFlake schema?
+
+Star Schema: A Star schema is a schema in which a fact is connected to multiple dimensions and dimension table doesn’t have any parent table.
+Snowflake Schema: A SnowFlake schema is a schema in which a fact is connected to multiple dimensions and dimension table have one or more parent table. In other words, snowflake schema is “a star schema with   dimensions connected to some more dimensions”
+
+Star Schema                                                                                Snowflake Schema
+Has data redundancy(duplicate data) and difficult
+to maintainNo data redundancy and easy to maintainHas De-normalized tablesHas Normalized tablesSuitable for large datawarehouseSuitable for small datawarehouseDimension table is not connected to other dimension tableDimension table is connected to another dimension tableQueries are less complex and easy to understandQueries are more complex and difficult to understandHas less number of joinsHas more number of joinsLess query execution timeMore execution time because of complex queries
+ 
+Q. What is ODBC and OCI?
+ODBC stands for Open Database Connectivity and is also known as Universal Data Connector. ODBC can be used to connect to any type of data source
+OCI stands for Oracle Call Interface and is used to connect only to Oracle data source
+ 
+Q. What is Data Warehousing?
+A data warehouse is the main repository of an organization’s historical data, it is corporate memory. It contains the raw material for management’s decision support system. The critical factor leading to the use of a data warehouse is that a data analyst can perform complex queries and analysis, such as data mining, on the information without slowing down the operational systems. Data warehousing collection of data designed to support management decision making. Data warehouses contain a wide variety of data that present a coherent picture of business conditions at a single point in time. It is a repository of integrated information, available for queries and analysis.
+ 
+Q. How do we import data from an Excel work sheet?
+To import metadata from an excel sheet we need to create a driver for excel data source. This can be achieved by using the following steps
+Open   Control Panel > Administrative Tools  > DataSources (ODBC)Click on the System DSN tab
+Click on Add
+Select the Excel driver from the given list
+Click on OK
+A new window opens
+Enter the data source name
+Select the excel work from which you want to import metadata
+Now open BI Administration tool
+Go to File > Import Metadata
+Select the Data Source that you have just created
+Now you can import the required data from your Excel Worksheet
+ 
+Q. What is single LTS and multiple LTS?
+The logical table created at the BMM layer can be based on the data from a single physical layer table, when it is called single Logical Table source. When the specific logical layer table is dependent on the columns of different physical layer tables, it is called Multiple LTS. Most of the time we will be dealing with Multiple LTS.
+ 
+Q. If we have 5 different dimension tables and we need to have hierarchies for only one table, is it mandatory to have hierarchies implemented for all the tables?
+Check Out OBIEE Tutorials 
+No, it is not mandatory to create the hierarchies for all the tables, we can just define hierarchies to those tables that need to have it.
+ 
+Q. How is the Query repository tool used?
+The Query repository tool gives the option to search and analyse the data from the database according to the name, type and other attributes that are describing the database.
+The relationship between the different view layer data and the corresponding the physical layer columns.
+ 
+Q. What are opaque views in database? When is it advisable to create one?
+The opaque views are tables that are created with join or other query data that contain “SELECT” query output. The opaque views make the logical understanding simple for implementation but there are heavy performance constraints. They are only used when there is no other way to get to the final solution.
+ 
+Q. How does the user of Aggregate tables help you in speeding up query responses? How is Siebel Analytics Server advantageous in this aspect?
+The Aggregate tables are the ones that get values initialized in them as and when the related fields in the other tables get updated. This type of automatic updates to frequently used measures help you in speeding up the queries. If there is a column for number of products produced for every month and you often want to have the summation of the number per year and average for every year often for all the queries, the aggregate table created will have the option to give you that value without computations every time. Siebel Analytics server gives the added advantage that the queries need not be aware of the readily available aggregate table names. If this was the case the SQL queries and the entire design might become complex.
+ 
+Q. What is an implicit fact column?
+The implicit fact column is the one that is created due to the join, combinations from the different data or columns from the different tables. There may not be the exact data in form of the column in the result or even in the physical layer of database. These are implied from different data and can just be a temporary layer which help us in getting the required result.
+ 
+Q. How can you map each of the reports across to the different tables that are being accessed?
+The Admin tool has the “Manage Sessions” tab which gives you the access to the logs that are being generated for each session.After the report generation sessions, you can easily view the log to map each requests to the corresponding tables and databases.
+ 
+Q. How can you migrate the presentation layers across to different servers?
+The presentation layer is dependent on the database that is underlying in the each server. Therefore the presentation layer alone cannot be migrated as a stand-alone aspect of the database. What we can do instead is have a ODBC or similar database connection established across from the different servers to the particular main system and then carry over the presentation semantics from the other server with that database oriented changes in the logic layer.
+ 
+Q. How will you impose access limitation to the database according to the region of access?
+1. The Data level security imposed according to data in certain column can be used to limit access depending on the regions.
+2. The Siebel Analytics admin tool will give you the control over user access to the different data according to conditions supplied by you.
+ 
+Q. Which is preferable? Creating the new logical column in the repository level or the Dashboard level of view?
+Creation of the logical column on the higher level of dashboard will have effect on the tables only on that view level and not on the other dashboards and other requests. The logical columns created on the repository level will in turn gets its effect on all the other requests and reports from different view levels. So it is always preferable to have the logical column created at the repository level.
+ 
+Q. What are the different deployment cases for the Siebel Analytics server?
+The Siebel Analytics server can be deployed as a stand alone system or can be deployed as an integrated server which interfaces and communicates to the different Analytics server.
+ 
+Q. What are the External table based and LDAP based security?
+The user ID and password need not be stored in the repository of the Siebel Analytics server. The external tables and LDAP offer the other possibilites. The userID and password for user authentication are stored in the external table. The information on different tables and the access information for each user are stored in this external table. The other way is the Lightweight Directory Access Protocol. This is similar to imposing a access limitation to all the different directories and folders thereby having the limitations to the data viewable for the different users.
+ 
+Q. Differentiate Object level security against the Data level security.
+1. The Object level security is a higher level of security that allows/disallows the access for user to specific table, row or column according to his access level. The Data level security level is about restrictions that are concerned about the different data that are used to generate the report of other view level information.
+2. The Object level of security are permissions corresponding to the objects in the database (like database reports, dashboards, folders etc) and such permissions are set in the view level, logical level or data level. The Data level security mostly set in the database level and related logic table level.
+ 
+Q. What are the various levels of access authentications?
+There are four levels of authentication that can restrict access to the different tables and databases:
+Operating level authentication: This is the overall higher level access restriction to the application. Without this one cannot get access to the application.
+Table authentication: The table level authentication is the access permissions set for each physical table.
+Database authentication: The Database user and password, corresponding previleges can let someone to access specific db or can just give him only partial access. This authentication is the main thing for the application that coordinates different databases. LDAP authentication.
+ 
+Q. What are the different types of caching?
+1. The cache management can be done in three different ways:
+Cache disabled: The NQConfig.INI file has the ENABLE parameter that can be set to NO. This disables the cache for the server. After the change the server needs a restart. The disable cache will prevent any queries to use/update cache. This may lead to slower performances, but will be useful in the case of lesser accesses that are being expected. Enabling of the cache will not be concerned about the cache updates and synchronization.
+2. Caching set for each physical table: The admin tool has the option “Make cache-abble” for the tables. You can click that and go into the general settings. This has the cache persistence in the option. This will make the queries to and fro from the physical table to use the cache. This can also be set according to specific time interval. This will help you in getting a good interactive response on the view layer. Any table that is frequently updated can have this setting on for reasonable amount of time.
+3. Event Polling data: The event polling data table keeps track of the different updates that are done on the different tables. The application is going to updated this event polling table for each query of update into the physical table. This stand-alone table can get the required frequency statistics for each table to maintain the cache policies as required.
+ 
+Q. What are two main categories of variables overall?
+There are two types of variables, namely the session variables and the repository variables. The session variables are pertaining to each session that is created for every login of a user. They may be System or Non-system variables.
+The repository variables are the ones that are specific to a repository/database. The repository variables contain the parameters that are corresponding to different attributes of the respository and queries. They are again classified as static and dynamic variables. The static variables are the ones that are having permanent values through out. The administrator can change it whenever needed. The dynamic variables are the ones that have values that are corresponding to the SQL queries and data fetches. The dynamic variables can take up values depending on the scheduled updates that are started by the administrator. They can also take up values fue to the SQL queries that have been recently executed from the user side. Initialization blocks run at specific time or triggered according to specific condition.
+ 
+Q. What are the different types of session variables that you are aware of?
+There are 2 different types of variables that we deal with in the Siebel architecture:
+1. System variables: The system variables are the ones that are used by the analytics server and web to manage and coordinate the sessions and related data. Such names cannot be used for non system variables or other repository variables. You can try naming such variables with a prefix to identify their nature and content. This will make it easier for classification within each session.
+2. Non-System variables- The non system variables are always used to have user-defined aspects of data stored at a specific place. If you have a data called “numberOfPersons” in a specific data from the user space, you can then use this to classify the entire database according to the numberOfPersons etc.
+When using the variables from the Analytics Webserver, you can just prefix the variable name with NQ_SESSION.(Varaiblename) to narrow down the scope to the present session.
+ 
+Q. How can you use the Siebel variables to cope up with dynamic data environments?
+The Siebel variable are the storage parameters that we can link within the metadata and other configuration parameters in the Siebel. With the help of the variable manager, all the confguration parameters can be loaded into the specific variable depending upon the different environments we are trying to have. This can help us in making the administrative tasks simpler.
+ 
+Q. How do you set the logging level as an administrator in Siebel?
+The Siebel Analytics Sever has the “Security” configuration in the Manage section of the admin tool. This dialog box has the settings for each user id. Click the specific user id. You can then get the logging level selection inside this settings. You can choose the appropriate level and save the changes.
+ 
+Q. What is a bridge table ?
+If you want to connect two tables where there is no relation ship you can use a thrid bridge table for connecting them which will have common columns in both tables, this is used in BMM Layer.
+ 
+Q. What are the Key Configuration Files in OBIEE?
+NQSConfig.ini, NQSCluster.ini, odbc.ini, instanceconfig.xml
+ 
+Q. How Time based triggered report can be generated
+Using Scheduler – ibots
+ 
+Q. What is ibot
+Ibot is an scheduling agent, used to schedule reports to be sent across various devices such as email, pager, mobile, other devices etc
+ 
+Q. What are different types of joins that are possible in OBIEE RPD
+Complex Join – to use multiple conditions, such A.ROW_WID = B.ROW_WID AND / OR A.A_WID = B.B_WID like that
+Natural Join / Equi Join
+ 
+Q. Difference between a session and repo variable
+Session variables are similar to dynamic repository variables in that they obtain their values from initialization blocks. Unlike dynamic repository variables, however, the initialization of session variables is not scheduled. When a user begins a session, the Oracle BI Server creates new instances of session variables and initializes them.
+A repository variable has a single value at any point in time. Repository variables can be used instead of literals or constants in Expression Builder in the Administration Tool. The Oracle BI Server substitutes the value of the repository variable for the variable itself in the metadata.
+Unlike a repository variable, there are as many instances of a session variable as there are active sessions on the Oracle BI Server. Each instance of a session variable could be initialized to a different value.
+(or)
+Session variables can have different values for each user, repository variables have the same value for everyone.
+There are two types of session variables:
+1. System session variables: out of the box variables like USER
+2. Non-system session variables: user-defined variables, can have different values for each user and are typically used to customize user experience , for example you could have a SALES_REGION variable to show only data relevant to the user’s region.
+Repository variables also have 2 subtypes:
+3. Static repository variable: Fixed value that can only be changed with the admin tool, can be used to replace hardcoded values like database schemas and user names in connection pools.
+4. Dynamic repository variable: These hold values that apply to any user, for instance currency exchange rates.
+Both System variables and dynamic repository variables get their values from initialization blocks that can contain SQL.
+ 
+Q. What is task scheme and In production… if users are running the report.. but not getting the data… what could be the reason and list all the checks step by step.. How u will resolve the problem
+whether the issue is specific to this user / general. If general, then you might want to check the joins, referential integrity between tables. If specific, then you may have to check his security authorization, business model filters, session variable initialization / any query timing limitations, number of connection pool parameters etc
+ 
+Q. How can i have two different columns from two different tables or subject areas
+Using confirmed dimensions, you can fetch multiple metrics across various facts, but the join should be of the same grain / same level of data detail.
+ 
+Q. How can u use saved filters and where  will you save the filters
+Shared Folders/XYZ Folder/ It contains two folders
+a. Prompts – saved filters will be stored here.
+1. Reports
+ 
+Q. Have you worked in dashboard.. when u run a dashboard… how will u stop the dashboard report run automatically
+By clicking on the cancel button, you can stop a specific report placed on the dashboard
+ 
+Q. What is a surrogate key
+A surrogate key is an artificially generated key, usually a number. A surrogate key, in the level aggregate table, simplifies this join and removes unnecessary columns (level primary key) from the fact table, resulting in a smaller-sized fact table. Adding surrogate keys to the dimension (level) aggregate tables can simplify joins to the fact tables and might improve query performance. Additionally, a surrogate key makes sure that each aggregate table has a unique identifier.
+ 
+Q. Couple of table names in Oracle GL,AR..ect
+Talk in detail using below material.. this talks of entire flow as to which table is used for what
+AR
+To be in the position where you need to handle and process a payment in Receivables, you need to have a buyer/payer (most times this is a customer but there are exceptions). Customer records are stored in the HZ_CUST_ACCOUNTS and HZ_PARTIES tables.  Each customer needs to have a site (a location/address of business) for which information is stored in HZ_CUST_ACCT_SITES_ALL and HZ_PARTY_SITES_ALL.
+When a customer purchases goods or services from your company, an invoice is generated for the customer.  These invoice transactions are recorded in RA_CUSTOMER_TRX_ALL (invoice headers) and RA_CUSTOMER_TRX_LINES_ALL (invoice lines).
+When the customer makes a payment, this generates new transactions.  These are recorded in AR_CASH_RECEIPTS_ALL and AR_CASH_RECEIPT_HISTORY.  If there is adjustment to an invoice, this is recorded in AR_ADJUSTMENTS.
+Sometimes payments are received in batches, where a single payment is for multiple invoices.  These batch payments have records in AR_BATCHES.
+The AR_PAYMENT_SCHEDULE table holds one record per payment.  Therefore, for payments that pay an invoice in full, there will only be one record related to that invoice.  However, if payments for an invoice are broken up into a payment plan, or if a partial payment is received for an invoice, additional records will be generated in this table for each payment.
+GL
+GL_INTERFACE This table holds financial transactions   (journals) transferred from other Oracle Applications modules and external   systems.
+GL_JE_BATCHES This table identifies a “batch” of   journals that are related and processed together. Each batch contains one or   more journals.
+GL_JE_HEADER Each journal has one journal header   and one record this table
+GL_JE_LINES Each journal has one or more journal   lines and are tied together by the journal header
+Some other important supporting tables in the GL data model include:
+GL_CODE_COMBINATIONS This is the Accounting Flexfield table   and it stores the chart of accounts values, and so the table contains the   valid GL account combinations allowed in the system, along with other   relevant information about the accounts.
+GL_LEDGERS This table stores all the Ledgers and   Ledger Sets in the Oracle GL system
+GL_PERIODS This   table stores information   about the accounting periods defined in the Oracle GL system. Each row contains   information such as, start date, end date of the period, the period type, the   fiscal year, and the period number.
+ 
+Q. What is a request variable and in a table how can i get the distinct record from the table… and If I say ‘distinct all’.. what data will u get
+So exactly what is a request variable?  Well, put succinctly:
+1. A request variable is a variable that is used to temporarily override the value of a session variable.
+And, with a little more precision, a request variable is:
+2. A variable that is defined within the Presentation Services;
+3. A variable whose scope (page or dashboard) is that of the associated dashboard prompt that defines the request variable and its value;
+4. A variable whose name should not match that of a repository variable or a security system session variable; and
+5. A variable that overrides the value of the corresponding session variable (should it exist) for the purpose of BI Server request parsing and physical SQL construction for all requests that are issued from dashboard pages that fall within the scope of the variable’s definition.
+Note, using a request variable does not change the actual value of a session variable – neither temporarily nor permanently.  It simply appears to change the value for certain purposes during the execution of a request.
+ 
+Q. When u run optimization and suppose u get some number….so how u know that the number is too bad or too good….
+Well, this is situation dependent.. Only way is to check with source numbers
+ 
+Q. What is explain plan
+From the BI side, you can basically use 2 types of hints
+The Index hint instructs the optimizer to scan a specified index rather than a table.
+1. The Leading hint forces the optimizer to build the join order of a query with a specified table.
+Importantly, the Explain Plan contains the following information regarding your query.
+2. Ordering of the tables referenced
+3. Access method for each table
+4. Join method for each join operation
+5. Data operations, such as filter, sort or aggregation
+And in addition:
+1. Optimization (Cost and Cardinality)
+2. Partitioning
+3. Parallel Execution
+ 
+Q. What are aggregations and if we have to do it on physical layer side then how u do it
+You can use the Aggregate Persistence Wizard to create the SQL file that will be used to create aggregate tables and map them into the metadata.
+Do not use aggregate persistence against tables with active Virtual Private Database (VPD) security filters. There is a possibility that the aggregate information might be persisted without the VPD filter, posing a security risk.
+The Aggregate Persistence Wizard is a nifty utility for creating, modelling and populating aggregate tables available in OBIEE 10g and 11g. This utility is especially useful to quickly build a single aggregation layer upon federated heterogeneous physical sources.  OBIEE will create, model and populate aggregate dimensions and facts based upon the intelligence you have built into the RPD. This avoids re-writing the same logic into your ETL
+ 
+Q. What kind of sources can be connected to OBIee?
+OBIee can be plugged on Relational Databases, Cubes or Flat files, with the following constraints :
+The sources must be modeled as star schemas or snowflakes schemas in order to have  an efficient and safe behavior.
+In case of multiple sources directly in OBIee used together, be aware that OBIee will conduct the needed joins itself, and OBIee is not a database.
+ 
+Q. Is it possible to create a report based on two subject areas  (example : Sales and Supply chain)?
+Theoretically, yes. In practice, the two subject area must come from the same business model in the repository, which is quite useless. Then, we can consider the two following alternatives :
+Create an analysis with “combine request”: one subrequest by subject area. Note that it’s tricky to implement for standard users.
+Set up a transverse subject area, that will gather tables from both business topics.
+ 
+Q. How to get real physical SQL sent by OBIee to the database
+First of all, check the value of your session variable LOGLEVEL.
+5 is fine.
+Then, go into Administration -> Manage sessions.
+Find your query (at the bottom of the list), and click on “View log”.
+If you hit the cache, you will see “cache hit on query”. Otherwise, you will see the physical SQL below the logical SQL.
+ 
+Q. How to configure an OBIee environment?
+In OBIee 11g, main configuration items are managed in Enterprise Manager (web interface).
+However, some configurations are still located in configuration files, like NQSConfig.ini, NQSCluster.ini, odbc.ini, and instanceconfig.xml.
+ 
+Q. In a troubleshooting perspective, how can I see log files?
+Old method in 10g version consisted in opening log files on the server.
+Now, in 11g, log information is consultable in Enterprise Manager.
+ 
+Q. What is query repository tool?
+It is utility of Seibel/OBIEE Admin tool
+Allows you to examine the repository metadata tool
+For example: search for objects based on name, type.
+Examine relationship between metadata objects like which column in the presentation layer maps to which table in physical layer
+ 
+Q. What is JDK and why do we need it?
+Java Development Kit (JDK), A software package that contains the minimal set of tools needed to write, compile, debug, and run Java applets.
+Oracle doesn’t recommend Opaque Views because of performance considerations, so why/when do we use them?
+An opaque view is a physical layer table that consists of select statement. an opaque view should be used only if there is no other solution.
+ 
+Q. Can you migrate the presentation layer to a different server?
+No we have to migrate the whole web & RPD files
+ 
+Q. How do you identify what are the dimension tables and how do you decide them during the Business/Data modeling?
+Dimension tables contain descriptions that data analysts use as they query the database. For example, the Store table contains store names and addresses; the Product table contains product packaging information; and the Period table contains month, quarter, and year values. Every table contains a primary key that consists of one or more columns; each row in a table is uniquely identified by its primary-key value or values
+ 
+Q. Why do we have multiple LTS in BMM layer? What is the purpose?
+To improve the performance and query response time.
+ 
+Q. What is the full form of RPD?
+There is no full form for RPD as such, it is just a repository file (Rapidfile Database)
+ 
+Q. How do i disable cache for only 2 particular tables?
+In the physical layer, right click on the table there we will have the option which says cacheable
+ 
+Q. How do you split a table in the RPD given the condition?
+(The condition given was Broker and customer in the same table) Split Broker and customer.
+We need to make an alias table in the physical layer.
+ 
+Q. What type of protocol did you use in SAS?
+TCP/IP
+ 
+Q. What is logging level? Where can you set logging levels?
+You can enable logging level for individual users; you cannot configure a logging level for a group.Set the logging level based on the amount of logging you want to do. In normal operations, logging is generally disabled (the logging level is set to 0). If you decide to enable logging, choose a logging level of 1 or 2. These two levels are designed for use by Siebel Analytics Server administrators.
+Set Logging Level:
+1. In the Administration Tool, select Manage > Security.
+2. The Security Manager dialog box appears.
+3. Double-click the user’s user ID.
+4. The User dialog box appears.
+5. Set the logging level by clicking the Up or Down arrows next to the Logging Level field
+Explore OBIEE Administration Sample Resumes! Download & Edit, Get Noticed by Top Employers!
+Download Now!
+ 
+Q. What is variable in OBIEE?
+You can use variables in a repository to streamline administrative tasks and modify metadata content dynamically to adjust to a changing data environment. The Administration Tool includes a Variable Manager for defining variables
+ 
+Q. What is system variable and non-system variable?
+System variables: System variables are session variables that the Siebel Analytics Server and Siebel Analytics Web use for specific purposes. System variables have reserved names, which cannot be used for other kinds of variables (such as static or dynamic repository variables, or for non-system session variables). When using these variables in the Web, preface their names with NQ_SESSION. For example, to filter a column on the value of the variable LOGLEVEL set the filter to the Variable NQ_SESSION.LOGLEVEL.
+Non-system variables: A common use for non-system session variables is setting user filters. For example, you could define a non-system variable called SalesRegion that would be initialized to the name of the user’s sales region. You could then set a security filter for all members of a group that would allow them to see only data pertinent to their region.
+When using these variables in the Web, preface their names with NQ_SESSION. For example, to filter a column on the value of the variable SalesRegion set the filter to the Variable NQ_SESSION.SalesRegion.
+ 
+Q. What are different types of variables? Explain each.
+There are two classes of variables:
+1. Repository variables
+2. Session variables
+Repository variables: A repository variable has a single value at any point in time. There are two types of repository variables:
+Static: This value persists, and does not change until a Siebel Analytics Server administrator decides to change it.
+Dynamic: The values are refreshed by data returned from queries. When defining a dynamic repository variable, you will create an initialization block or use a preexisting one that contains a SQL query. You will also set up a schedule that the Siebel Analytics Server will follow to execute the query and periodically refresh the value of the variable.
+Session Variables: Session variables are created and assigned a value when each user logs on. There are two types of session variables:
+1. System
+2. Non-system.
+ 
+Q. What is the cache management? Name all of them and their uses. For Event polling table do you need the table in your physical layer?
+Monitoring and managing the cashe is cache management.There are three ways to do that.
+Disable caching for the system.(NSQconfig INI file), Cache persistence time for specified physical tables and Setting event polling table.
+Disable caching for the system.(INI NQ config file): You can disable caching for the whole system by setting the ENABLE parameter to NO in the NQSConfig.INI file and restarting the Siebel Analytics Server. Disabling caching stops all new cache entries and stops any new queries from using the existing cache. Disabling caching allows you to enable it at a later time without losing any entries already stored in the cache.
+Cache persistence time for specified physical tables: You can specify a cacheable attribute for each physical table; that is, if queries involving the specified table can be added to the cache to answer future queries. To enable caching for a particular physical table, select the table in the Physical layer of the Administration Tool and select the option Make table cacheable in the General tab of the Physical Table properties dialog box. You can also use the Cache Persistence Time settings to specify how long the entries for this table should persist in the query cache. This is useful for OLTP data sources and other data sources that are updated frequently, potentially down to every few seconds.
+Setting event polling table: Siebel Analytics Server event polling tables store information about updates in the underlying databases. An application (such as an application that loads data into a data mart) could be configured to add rows to an event polling table each time a database table is updated. The Analytics server polls this table at set intervals and invalidates any cache entries corresponding to the updated tables.
+For event polling table ,It is a standalone table and doesn’t require to be joined with other tables in the physical layer.
+ 
+Q. What is Authentication? How many types of authentication.
+Authentication is the process, by which a system verifies, through the use of a user ID and password, that a user has the necessary permissions and authorizations to log in and access data. The Siebel Analytics Server authenticates each connection request it receives.
+1. Operating system authentication
+2. External table authentication
+3. Database authentication
+4. LDAP authentication
+ 
+Q. What is object level security?
+There are two types of object level security:
+1. Report Level
+2. Web Level
+Repository level: In presentation layer we can set Repository level security by giving permission or deny permission to users/groups to see particular table or column.
+Web level: this provides security for objects stored in the OBIEE web catalog, such as dashboards, dashboards pages, folder, and reports you can only view the objects for which you are authorized. For example, a mid-level manager may not be granted access to a dashboard containing summary information for an entire department.
+ 
+Q. What is data level security?
+This controls the type an amount of data that you can see in a report. When multiple users run the same report the results that are returned to each depend on their access rights and roles in the organization. For example a sales vice president sees results for all regions, while a sales representative for a particular region sees only data for that region.
+ 
+Q. What is the difference between Data Level Security and Object Level Security?
+Data level security controls the type and amount of data that you can see in reports. Object level security provides security for objects stored in the OBIEE web catalog, like dashboards, dashboards pages, folder, and reports.
+ 
+Q. How is security set up in OBIEE?  How many methods of security can be set up in OBIEE…?
+Authentication is process of confirming whether the user is a valid user or not. Is he part of this company? Is he an employee of our external suppliers?
+Authorization is process of giving access to different pieces of the OBIEE. One user “UserA” can access dashboards, can create iBots, can schedule reports and can do administrative tasks. Another user “UserB” can see only part of what “UserA” has access to and “UserB” has access to some other tabs of the dashboard that “UserA” does not.
+This layer of separating who can access what is done as part of Authorization.
+ 
+Q. How does OBIEE handle Authentication?
+It’s very flexible and can be integrated to one of your existing technologies like LDAP, Oracle EBS, AD, and Oracle Database. So, do the same username have to exist in OBIEE security layer as part of RPD development? Yes, by default, OBIEE stores list of usernames and passwords and checks incoming credentials against it.
+Heard about External Table Authentication? Where does this come into play?
+Instead of storing usernames and passwords directly in the RPD, these are stored in the database for better management purposes. This also helps in RPD migration and deployment across multiple environments.
+ 
+Q. How is Authorization handled in OBIEE?
+Authorization is done as part of security in Presentation Services.
+ 
+Q. Does OBIEE have two layers of security?
+Yes, first at the RPD level and second at the presentation services level.
+ 
+Q. What kind of privileges can be granted from presentation services level?
+Access to iBots, certain tabs in the dashboard, delivers, alerts, schedule reports etc etc..
+ 
+Q. Why OBIEE security is different compared to other BI tools?
+Because it’s very flexible and can integrate into any existing security architecture an organization has built and reduces the need for one more layer of administration..
+Did Oracle OBIEE do a good job of communicating and convincing the user community regarding the security architecture?
+Probably not… I understand the complexity behind this and the mere flexibility of the tool makes this even difficult.
+ 
+Q. What is the default location of a repository file?
+[InstalledDirectory]OracleBIserverRepository
+ 
+Q. What’s XMLA and where is it used for in OBIEE context
+The Provider Services tool that comes with Essbase is used to provide the interface, with Oracle BI Server talking to Essbase through its XMLA interface. (Need to find the answer still)
+XML for Analysis (abbreviated as XMLA) is an industry standard for data access in analytical systems, such as OLAP and Data Mining. XMLA is based on other industry standards such as XML, SOAP and HTTP.
+ 
+Q. Can you change the location of your RPD file in your OBIEE Configuration? If Yes, Where would you mention the new location of this RPD file for Bi Server?
+Read the NQSConfig file “Repository Section”. You will easily find the answer. The answer for this is “It cant be changed”.
+The repository location can be changed, this must be done when clustering the BI Server. The parameters in the NQSCONFIG.INI file are
+REPOSITORY_PUBLISHING_DIRECTORY =
+REQUIRE_PUBLISHING_DIRECTORY = YES;
+ 
+Q. What kind of joins would you perform in the physical layer of the repository file when opened with Administration tool?
+We cannot have outer joins in Physicla layer. We can outer joins in BMM layer.  In BMM layer – complex join can be full inner join or full outer join or whatever your criteria was,but in physical layer – physical join is always an inner join.
+ 
+Q. What are the minimum services needed to load a repository file onto memory and view a dashboard which has reports that have been refreshed on a scheduled basis?
+Oracle BI Java Host, Oracle BI Presentation Server, and Oracle BI Server
+ 
+Q. What is Level Based Metrics.How will you create it?
+Leval-base matrics means, having a measure pinned at a certain level of the dimension. Monthly Total Sales or Quarterly Sales are the examples.
+To create a level based measure, create a new logical column based on the original measure (like Sales in the example above). Drag and drop the new logical column to the appropriate level in the Dimension hierarchy (in the above example you will drag and drop it to Month in Time Dimension.
+ 
+Q. What are Global Filter and how thery differ From Column Filter?
+Column filter- Simply a filter applied on a column which we can use to restrict our column values while pulling the data or in charts to see the related content.
+Global filter- This filter will have impact on across the application.
+ 
+Q. What is a materialized view?
+Materialized view is a physical object and replica of the one or more master objects.It will refresh in an intervals.
+ 
+Q. Have you ever tried with de-normalized Database to build reports? If yes, How to handle?
+Building reports on de-normalized data is not a best practice it leads to performance issues but we can build the reports. These are reports can’t be used for business analysis because the data will fluctuate non regular intervals.
