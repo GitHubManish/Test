@@ -1,0 +1,28 @@
+What is SQL Server Integration Services (SSIS)?
+SQL Server Integration Services (SSIS) is component of SQL Server 2005 and later versions. SSIS is an enterprise scale ETL (Extraction, Transformation and Load) tool which allows you to develop data integration and workflow solutions. Apart from data integration, SSIS can be used to define workflows to automate updating multi-dimensional cubes and automating maintenance tasks for SQL Server databases.
+How does SSIS differ from DTS? 
+SSIS is a successor to DTS (Data Transformation Services) and has been completely re-written from scratch to overcome the limitations of DTS which was available in SQL Server 2000 and earlier versions. A significant improvement is the segregation of the control/work flow from the data flow and the ability to use a buffer/memory oriented architecture for data flows and transformations which improve performance.
+What is the Control Flow? 
+When you start working with SSIS, you first create a package which is nothing but a collection of tasks or package components.  The control flow allows you to order the workflow, so you can ensure tasks/components get executed in the appropriate order.
+What is the Data Flow Engine? 
+The Data Flow Engine, also called the SSIS pipeline engine, is responsible for managing the flow of data from the source to the destination and performing transformations (lookups, data cleansing etc.).  Data flow uses memory oriented architecture, called buffers, during the data flow and transformations which allows it to execute extremely fast. This means the SSIS pipeline engine pulls data from the source, stores it in buffers (in-memory), does the requested transformations in the buffers and writes to the destination. The benefit is that it provides the fastest transformation as it happens in memory and we don't need to stage the data for transformations in most cases.
+What is a Transformation?
+ A transformation simply means bringing in the data in a desired format. For example you are pulling data from the source and want to ensure only distinct records are written to the destination, so duplicates are  removed.  Anther example is if you have master/reference data and want to pull only related data from the source and hence you need some sort of lookup. There are around 30 transformation tasks available and this can be extended further with custom built tasks if needed.
+What is a Task?
+A task is very much like a method of any programming language which represents or carries out an individual unit of work. There are broadly two categories of tasks in SSIS, Control Flow tasks and Database Maintenance tasks. All Control Flow tasks are operational in nature except Data Flow tasks. Although there are around 30 control flow tasks which you can use in your package you can also develop your own custom tasks with your choice of .NET programming language.
+What is a Precedence Constraint and what types of Precedence Constraint are there?
+SSIS allows you to place as many as tasks you want to be placed in control flow. You can connect all these tasks using connectors called Precedence Constraints. Precedence Constraints allow you to define the logical sequence of tasks in the order they should be executed. You can also specify a condition to be evaluated before the next task in the flow is executed. 
+These are the types of precedence constraints and the condition could be either a constraint, an expression or both  
+Success (next task will be executed only when the last task completed successfully) or 
+Failure (next task will be executed only when the last task failed) or 
+Complete (next task will be executed no matter the last task was completed or failed).
+What is a container and how many types of containers are there?
+A container is a logical grouping of tasks which allows you to manage the scope of the tasks together. 
+These are the types of containers in SSIS: 
+Sequence Container - Used for grouping logically related tasks together
+For Loop Container - Used when you want to have repeating flow in package
+For Each Loop Container - Used for enumerating each object in a collection; for example a record set or a list of files.
+Apart from the above mentioned containers, there is one more container called the Task Host Container which is not visible from the IDE, but every task is contained in it (the default container for all the tasks).
+What are variables and what is variable scope? 
+A variable is used to store values. There are basically two types of variables, System Variable (like ErrorCode, ErrorDescription, PackageName etc) whose values you can use but cannot change and User Variable which you create, assign values and read as needed. A variable can hold a value of the data type you have chosen when you defined the variable.
+Variables can have a different scope depending on where it was defined. For example you can have package level variables which are accessible to all the tasks in the package and there could also be container level variables which are accessible only to those tasks that are within the container.
