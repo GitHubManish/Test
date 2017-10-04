@@ -1,0 +1,129 @@
+Q. What is Action Listener ?
+An action listener is a class that wants to be notified when a command component fires an action event. An action listener contains an action listener method that processes the action event object passed to it by the command component
+Q. What are ADF BC(Business Components)? Describe them.
+All of these features can be summarized by saying that using ADF Business Components for your J2EE business service layer makes your life a lot easier. The key ADF Business Components that cooperate to provide the business service implementation are:
+1. Entity Object: An entity object represents a row in a database table and simplifies modifying its data by handling all DML operations for you. It can encapsulate business logic for the row to ensure your business rules are consistently enforced. You associate an entity object with others to reflect relationships in the underlying database schema to create a layer of business domain objects to reuse in multiple applications.
+2. Application Module: An application module is the transactional component that UI clients use to work with application data. It defines an updatable data model and top-level procedures and functions (called service methods) related to a logical unit of work related to an end-user task.
+3. View Object: A view object represents a SQL query and simplifies working with its results. You use the full power of the familiar SQL language to join, project, filter, sort, and aggregate data into exactly the “shape” required by the end-user task at hand. This includes the ability to link a view object with others to create master/detail hierarchies of any complexity. When end users modify data in the user interface, your view objects collaborate with entity objects to consistently validate and save the changes
+Check Out Oracle ADF Tutorials 
+Q. Which component in ADF BC manages transaction?
+Application Module, manages transaction.
+Q. Where is that we write business rules/validations in ADF and why?
+We should ideally be writing validations at Entity Object level, because they provide highest degree of reuse.
+Q. What are various components in ADF?
+Oracle ADF has following components
+1. ADF Business Components: VO, EO & AM
+2. ADF Model : DataBinding (.cpx, .xml) & DataControls(.dcx)
+3. ADF View: JSP, JSF, ADF Faces etc.
+4. ADF Controller: Task flows (adf-config.xml), faces-config.xml
+Q. What is the return type of Service Methods?
+Service Methods can return Scalar or Primitive Data types.
+Q. Can Service Methods return type Void?
+Yes, Service Methods can Return type Void
+Q. Can Service Methods return Complex Data types?
+No, service methods can return only primitive/scalar data types.
+Q. Where do we write business rules or validations in ADF and why?
+We should be writing validations at Entity Object level, because they provide highest degree of reuse.
+Q. What are Entity Objects?
+Entity objects are Data Access Objects (DAOs) that are responsible for persisting & caching data, validation, and encapsulating business rules.
+1. Represent a database table or other data source.
+2. Handles database caching.
+3. Contains attributes representing the database columns.
+4. Encapsulates attribute-level and entity –level validation logic.
+5. Can contain custom business methods.
+Q. Can an entity object be based on two Database Objects(tables/views) or two Webservices?
+No, Directly its not possible to create EO using multiple tables.
+Entity objects will always have one to one relationship with a database object or web service.
+But using views you can create Entity Objects on multiple tables.
+Q. What is Control Hints in Entity Object configuration? 
+1. Control hints are associated with the current view or entity attribute. All view objects inherit the hint values at run time.
+2. Control hints for data controls and bindings, including: Labels, Date & currency formatting.
+Q. What are View Objects?
+View objects, which can be bases on entity objects/Web Services, represent the data which you want to view and manipulate.
+1. Present a view or slice of business data.
+2. Are used for joining, filtering, projecting, and sorting your business data.
+3. Can be based on any number of entity objects.
+4. Can also be constructed from a SQL statement.
+Read-only SQL –Based View Objects:
+1. Is not based on any entity based object.
+2. Cannot be used for insert, update, or delete.
+3. Use SQL-based view objects for query –only views, which do not need the functionality of entity objects.
+Q. What is Application Module?
+An ADF components application module is a service object that coordinates view objects for a specific task in the same way that a form usually encapsulates a single user task. It contains only the business services that the application requires, and can be compared to a Forms module.
+An application module can represent and assist with tasks such as:
+1. Updating customer information
+2. Creating new order
+3. Processing salary increases.
+Q. What is the return type of Service Methods?
+Service Methods can return Scalar or Primitive Data types.
+Learn Oracle ADF training makes you an expert in developing enterprise applications effectively using a commercial Java framework.
+Q. Can Service Methods return type Void?
+Yes, Service Methods can Return type Void
+Q. Can Service Methods return Complex Data types?
+No, service methods can return only primitive/scalar data types.
+Q. Which component in ADF BC manages transaction?
+Application Module, manages transaction.
+Q. Can an entity object be based on two Database Objects(tables/views) or two Webservices?
+No entity objects will always have one to one relationship with a database object or web service.
+Q. Where is that we write business rules/validations in ADF and why?
+We should be writing validations at Entity Object level, because they provide highest degree of reuse.
+Q. What are the various access scopes supported by ADF?
+ADF Faces supports the following scopes
+1. Application Scope
+2. Session Scope
+3. PageFlow Scope
+4. Request Scope
+5. BackingBean Scope.
+Q. What is the purpose of adfc-config.xml?
+The adfc-config.xml file is the configuration file for an ADF unbounded task flow. This file contains metadata about the activities and control flows contained in the unbounded task flow.
+Q. What is the purpose of faces-config.xml?
+Use the faces-config.xml file to register a Framework application’s resources, such as custom validators and managed beans, and to define all page-to-page navigation rules.
+Q. In which xml do you configure the skin for your framework application?
+trinidad-config.xml
+Q. How do you decide whether the application should be deployed as an EAR or a WAR?
+If the application contains run-time customizations using MDS, it must be bundles as an EAR. For simple webcenter portal application with no such customizations, WAR can be created.
+Q. What is the purpose of jazn-data.xml?
+This file is used for defining the permissions and privileges for various groups of users on various taskflows created in the application.
+Q. When we drag drop VO from DataControl which binding occurs?
+Value binding occurs.
+Q. Explain Data binding & its types, sub-types?
+Oracle Application Development Framework (Oracle ADF) provides several types of binding objects to support the attributes and operations exposed by the Oracle ADF data controls for a particular business object:
+ITERATOR BINDING, one per accessor attribute that your page or panel displays. Iterates over the business objects of the data collection and maintains the row currency and state.
+VALUE BINDINGS, one for each data-bound UI component. Provides access to data.
+ACTION BINDING, specifically defined for a button component. Provides access to operations defined by the business object.
+Value Binding Types:
+1. Attribute Value Binding
+2. Boolean Value Binding
+3. List Value Binding
+4. Range Value Binding
+5. Scroll Value Binding
+Q. Explain Data Control Palette hierarchy
+Data Control Palette hierarchy:The Data Control Palette displays two types of actions:
+Actions that typically operate on all data collections in the current web page’s binding context (such as Commit and Rollback) in the Operations folder at the root level of the hierarchy.
+Operations on a specific data collection (for example, MyView1). Data collection-specific operations (such as Create and Delete) appear in the Operations folder as child nodes of the collection in the Data Control Palette.
+Q. Can we change DB connection for any particular AM?
+YES, follow steps to change DB connection:
+1. Double click on AM.
+2. GO to the configuration tab, click on configuration file bc4j.xml
+3. Here we have attribute JDBCName under element AppModuleConfig, change the connection which is created for other DB.
+Q. How can you manage transaction in ADF?
+We can manage transaction using Application Module, different Application Modules, Bounded Task Flows & at ADF Data Control Level.
+Q. Describe Oracle ADF Architecture?
+In line with community best practices, applications you build using the Fusion web technology stack achieve a clean separation of business logic, page navigation, and user interface by adhering to a model-view-controller architecture. As shown in in an MVC architecture:
+The model layer represents the data values related to the current page The view layer contains the UI pages used to view or modify that data The controller layer processes user input and determines page navigation.The business service layer handles data access and encapsulates business logic
+
+                                        
+Oracle ADF Business Components, which simplifies building business services.
+Oracle ADF Faces rich client, which offers a rich library of AJAX-enabled UI components for web applications built with JavaServer Faces (JSF).
+Oracle ADF Controller, which integrates JSF with Oracle ADF Model. The ADF Controller extends the standard JSF controller by providing additional functionality, such as reusable task flows that pass control not only between JSF pages, but also between other activities, for instance method calls or other task flows.
+Simple Oracle ADF Architecture
+                              
+Q. What is Association and Viewlink?
+They define the join or the link among EO’s and VO’s.Association defines link between EO’s.They can be considered as PrimaryKey/ForeignKey relationship between tables.
+The Viewlink is for a VO.It defines the Join conditions.A viewlink can be based on an association or based on attributes,Basing viewlinks on associations have the same advantage of entity cache and few more which are unveiled later.
+Explore Oracle ADF Sample Resumes! Download & Edit, Get Noticed by Top Employers!
+Download Now!
+Q. What is  the Business Component Tester
+The mostly used component of the model layer is the tester, which is used to run and check the data model that is implemented.This serves as the first line of defense to see if data is exposed as we need it and to test the data model with out a need to create a UI.
+Q. What is task flow?
+ADF task flows provide a modular approach for defining control flow in an application.Instead of representing an application as a single large JSF page flow, you can break it up into a collection of reusable task flows. Each task flow contains a portion of the application’s navigational graph. The nodes in the task flows are activities. An activity node represents a simple logical operation such as displaying a page, executing application logic, or calling another task flow. The transactions between the activities are called control flow cases.
