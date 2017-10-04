@@ -1,0 +1,37 @@
+1) What are the different kinds of SSRS Reports?
+Reports can be categorized into operational and analytical reports. The distinction is based on the source of data and level of analysis facilitated by any particular report. Operational reports are based on OLTP sources and are static reports and Analytical reports are based on OLAP sources and generally facilitate drill-down and drill-through for analysis. Technically, SSRS reports can be categorized into parameterized, linked, snapshot, cached, etc...
+Further Reading
+2) What are parameterized reports? What are cascading parameters in SSRS reports?
+Reports that accept parameters from users to fetch and report data conditionally, are known as parameterized reports. When you have multiple parameters in a report and values of different parameters are dependent and populated dynamically based on the value of parent parameters, it's known as a cascading parameter.
+Further Reading
+3) How would you go about developing a SSRS report?
+General development methodology for a SSRS report is to start by creating a data source. Based on the data source create one or multiple datasets as needed for parameters and the body of the report. Add required controls from the toolbox which would act as a container for the fields in the dataset. Format the controls added to the report body.  Verify and validate the report and finally deploy the report.
+Further Reading
+4) What is a dataset and what are the different types of datasets?
+A dataset is similar to a query definition, which is executed when the report is executed. Datasets are of two types: Shared and Embedded. An embedded dataset is private to the report in which it exists and shared datasets can be shared across reports.
+Further Reading
+5) Would you store your query in a SSRS report or a Database server? State the reason why.
+Storing SQL queries directly in text format in the dataset, should be avoided. Ideally it should be stored in a stored procedure in the database server. The benefit is that the SQL would be in a compiled format in a SP and brings all the benefits of using an SP compared to using an ad-hoc query from the report.
+Further Reading
+6) What is Tablix?
+A Tablix can be seen as a control with combined capabilities of a table and a matrix, which facilitates asymmetric and flexible, row and column level, static and dynamic groupings.
+Further Reading
+7) How would you access SSRS reports deployed on report server?
+Reports Manager is the most straight-forward way to access SSRS reports deployed on report server. Apart from executing the reports, it is the main administration console for SSRS server to manage reports.
+Further Reading
+8) Have you used the Report Viewer control / web part? What are the limitations?
+The report viewer control / web part is the basic control to integrate SSRS reports with external applications. Using these interface applications can link and display SSRS reports within the application. The parameters toolbar in these controls have a limited programmable interface to decorate and blend it with the theme of the application.
+Further Reading
+9) Which is the latest version of SSRS and what are the new enhancements?
+SSRS 2008 R2 is the latest RTM version of SSRS. Rich data visualizations, better programming functions for lookup and aggregation, improved performance and better control over exported data are some of the major enhancements.
+Further Reading
+10) What is Report Builder?
+Report Builder is an ad-hoc report authoring tool primarily targeted to be used by business analysts to facilitate self-service report authoring. Report Builder 3.0 is the latest version available as of date.
+Further Reading
+11) How would you deploy SSRS Reports using out-of-box functionality and how can you automate SSRS report deployment?
+Business Intelligence Development Studio is generally used to deploy SSRS reports. There is no out-of-box support in SSRS to automate reports deployment, but free third-party products like RSScripter can be used for this.
+Further Reading
+12) What is drill-down and drill-through in SSRS?
+Drill-down is a mechanism of decomposing summarized information to a detailed level. Drill-through is a mechanism of decomposing the problem by drilling information generally using more than one report.
+Further Reading
+Further Reading
