@@ -53,7 +53,7 @@ How would you deploy SSRS Reports using out-of-box functionality and how can you
 Business Intelligence Development Studio is generally used to deploy SSRS reports. 
 There is no out-of-box support in SSRS to automate reports deployment, but free third-party products like RSScripter can be used for this.
 
-12) What is drill-down and drill-through in SSRS?
+**What is drill-down and drill-through in SSRS?**
 Drill-down is a mechanism of decomposing summarized information to a detailed level. 
 Drill-through is a mechanism of decomposing the problem by drilling information generally using more than one report.
 
