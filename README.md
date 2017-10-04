@@ -1,2 +1,69 @@
-# Test
--test
+# SSAS
+What is SQL Server Analysis Services (SSAS)?
+SQL Server Analysis Services (SSAS) is the On-Line Analytical Processing (OLAP) Component of SQL Server. SSAS allows you to build multidimensional structures called Cubes to pre-calculate and store complex aggregations, and also to build mining models to perform data analysis to identify valuable information like trends, patterns, relationships etc. within the data using Data Mining capabilities of SSAS, which otherwise could be really difficult to determine without Data Mining capabilities.
+SSAS comes bundled with SQL Server and you get to choose whether or not to install this component as part of the SQL Server Installation.
+What is OLAP? How is it different from OLTP?
+OLAP stands for On-Line Analytical Processing. It is a capability or a set of tools which enables the end users to easily and effectively access the data warehouse data using a wide range of tools like Microsoft Excel, Reporting Services, and many other 3rd party business intelligence tools.
+OLAP is used for analysis purposes to support day-to-day business decisions and is characterized by less frequent data updates and contains historical data. Whereas, OLTP (On-Line Transactional Processing) is used to support day-to-day business operations and is characterized by frequent data updates and contains the most recent data along with limited historical data based on the retention policy driven by business needs.
+What is a Data Source? What are the different data sources supported by SSAS?
+A Data Source contains the connection information used by SSAS to connect to the underlying database to load the data into SSAS during processing. A Data Source primarily contains the following information (apart from various other properties like Query timeout, Isolation etc.):
+Provider
+Server Name
+Database Name
+Impersonation Information
+SSAS Supports both .Net and OLE DB Providers. Following are some of the major sources supported by SSAS: SQL Server, MS Access, Oracle, Teradata, IBM DB2, and other relational databases with the appropriate OLE DB provider.
+What is Impersonation? What are the different impersonation options available in SSAS?
+Impersonation allows SSAS to assume the identity/security context of the client application which is used by SSAS to perform the server side data operations like data access, processing etc. As part of impersonation, the following options are available in SSAS:
+Use a specific Windows user name and password: This option lets you to specify Windows account credentials which will be used by SSAS to perform operations like source data access, processing etc.
+Use the service account: When this option is selected, SSAS uses the credentials of the service account under which the Analysis Services service is configured/running for source data access, processing etc.
+Use the credentials of the current user: When this option is set, SSAS uses the credentials of the current user for performing operations like DMX Open Queries, Local cubes etc. This option cannot be used for performing server side operations like source data access, processing etc.
+Inherit: This option let's the SSAS server decide which impersonation mode is suitable for each type of operation. When this option is set, by default SSAS will use the service account for operations like processing and the credentials of the current user for operations like Local cubes, querying the data mining models, etc...
+What is a Data Source View?
+A Data Source View (DSV) is a logical view of the underlying database schema and offers a layer of abstraction for the underlying database schema. This layer acts as a source for SSAS and captures the schema related information from the underlying database. The schematic information present in DSV includes the following:
+Underlying database Table(s)/View(s) metadata
+Primary Key & Foreign Key relationships between the underlying database Table(s)
+Additional columns in the form of Named Calculations
+Complex logic on the underlying Table(s)/View(s) in the form of Named Queries
+SSAS can only see the schematic information present in the DSV and it cannot see the schematic information from the underlying database.
+What is a Named Calculation? In what scenarios do you use it?
+A Named Calculation is a new column added to a Table in DSV and is based on an expression. This capability allows you to add an extra column into your DSV which is based on one or more columns from underlying data source Table(s)/View(s) combined using an expression without requiring the addition of a physical column in the underlying database Table(s)/View(s).
+The expression used in the Named Calculation should conform to the underlying data source dialect. For example, if the underlying data source is SQL Server, then it should conform to T-SQL, If is it Oracle, then it should conform to PL/SQL, etc...
+Named Calculations can be used in many scenarios, following are some of the common scenarios:
+For creating Derived Columns. Say you have First Name and Last Name in the underlying data source Table/View and you want to get the Full Name as "First Name + space + Last Name". Such things can be added as a Named Calculation.
+For performing Lookup Operations. Say you have an Employee table which has AddressID and an Address table in which AddressID is the Primary Key. Now, to get the address information (say Country) into the Employee table in DSV, a Named Calculation can be added to the Employee table with the following expression:
+(
+  SELECT Country
+  FROM Address
+  WHERE AddressID = Employee.AddressID
+)
+What is a Named Query? In what scenarios do you use it?
+A Named Query is a SQL query/expression in your DSV which acts as a Table. It is used to combine data from one or more Table(s)/View(s) from the underlying data source without requiring any schematic changes to the underlying data source Table(s)/View(s).
+The SQL Query used in the Named Query should conform to the underlying data source dialect. For example, if the underlying data source is SQL Server, then it should conform to T-SQL, If is it Oracle, then it should conform to PL/SQL, etc...
+Named Queries are used in various scenarios, following are some of the common scenarios:
+Combining data from multiple Tables/Views from the underlying data source by using either simple or complex join operations.
+Adding filter conditions for filtering out unwanted data or selecting the required data (limiting the data).
+Pretty much everything that can be done using a Named Calculation can also be done using a Named Query.
+What are the pros and cons of using Tables and Named Queries in DSV?
+Following are some of the pros and cons of using Tables and Named Queries in DSV. Tables in the below comparison refers to the Table in DSV which references a single Table or a View in the underlying source database.
+
+Tables
+Named Queries
+Named Calculations can be added to Tables in DSV.
+Named Calculations cannot be added to Named Queries in DSV.
+Keys and Relationships are automatically set (by the wizard) based on the Keys and Relationships in the underlying database schema.
+Keys and Relationships have to be set explicitly in the DSV.
+Only one Table/View from the underlying data source can be referenced in DSV.
+More than one Table/View from the underlying data source can be referenced using a SQL Expression in the DSV.
+Any filter/limiting conditions cannot be applied on a table in DSV.
+Filter/limiting conditions can be applied as part of the SQL expression in the Named Query in the DSV.
+
+Although Named Calculations and Named Queries can be used to extend the functionality of SSAS to address the evolving business needs, it is always a good practice to first build a good Dimensional Model in the beginning of a Data Warehousing/SSAS project.
+What is the purpose of setting Logical Keys and Relationships in DSV?
+Many of the user interfaces/designers/wizards in BIDS which are part of a SSAS project depend on the Primary Key and Relationships between Fact and Dimension tables. Hence it is important to define the Primary Key and Relationships in DSV.
+By default, the Data Source View Wizard detects the Physical Primary Keys and Relationships between the tables in the underlying source database and applies the same Keys and Relationships in DSV layer. However, Logical Keys and Relationships need to be defined explicitly in the following scenarios:
+If the DSV table is referring to an underlying database View.
+If the DSV table is created as a Named Query.
+If any additional relationships need to be defined in the DSV layer apart from the ones that are physically defined in the underlying source database.
+Is it possible to combine data from multiple data sources in SSAS? If yes, how do you accomplish it?
+SSAS allows combining data from multiple underlying data sources into a single DSV. To be able to add Table(s)/View(s) from multiple data sources, first you need to create a DSV using your first source and this source acts as the primary data source. Now after the initial DSV is created, you can add one or more data sources into DSV which will act as secondary data sources and you can choose additional Table(s)/View(s) from the secondary data sources which you want to include in your DSV.
+The key thing while combining data from multiple data sources is that the Primary Data Source must support OPENROWSET queries. Hence in most cases, SQL Server is used as the Primary Data Source.
