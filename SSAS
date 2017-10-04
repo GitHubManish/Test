@@ -95,3 +95,4 @@ SSAS allows combining data from multiple underlying data sources into a single D
 
 The key thing while combining data from multiple data sources is that the Primary Data Source must support OPENROWSET queries. Hence in most cases, SQL Server is used as the Primary Data Source.
 
+
