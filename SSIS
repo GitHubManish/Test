@@ -26,3 +26,94 @@ Apart from the above mentioned containers, there is one more container called th
 What are variables and what is variable scope? 
 A variable is used to store values. There are basically two types of variables, System Variable (like ErrorCode, ErrorDescription, PackageName etc) whose values you can use but cannot change and User Variable which you create, assign values and read as needed. A variable can hold a value of the data type you have chosen when you defined the variable.
 Variables can have a different scope depending on where it was defined. For example you can have package level variables which are accessible to all the tasks in the package and there could also be container level variables which are accessible only to those tasks that are within the container.
+
+
+##
+
+1) Explain what is SSIS?
+SSIS or SQL Server Integration Services (SSIS) is a component of Microsoft SQL Server, which can be used to accomplish a broad range of data migration tasks.
+2) Mention what are the important components of SSIS package?
+The important component in SSIS package are
+Data flow
+Control flow
+Package explorer
+Event handler
+3) Explain what is Solution Explorer in SSIS?
+Solution Explorer in SSIS Designer is a screen where you can view and access all the data sources, data sources views, projects, and other miscellaneous files.
+4) Explain what does it mean by data flow in SSIS?
+Data flow in SSIS is nothing but the flow of data from the corresponding sources to the target destinations.
+5) Define what is “task” in SSIS?
+Task in SSIS is a very much similar to the method of any programming language that represents or carries out an individual unit of work.  Tasks are categorized into two categories
+Control Flow Tasks
+Database Maintenance Tasks
+
+
+6) Explain what is SSIS package?
+A package in SSIS is an organized collection of connections like data flow elements, control events, event handlers, parameters, variables, and configurations. You assemble them by either building it programmatically or by graphical design tools that SSIS provides.
+7) List out different types of connection or files that support SSIS?
+Different types of connection that work within SSIS are
+
+
+ODBC
+OLEDB
+.net SQLClient
+Flat File
+Excel
+XML
+8) Explain what is a container? How many types of containers are there in SSIS?
+In SSIS, a container is a logical grouping of tasks, and it allows to manage the scope of a task together.
+Types of containers in SSIS are
+Sequence container
+For loop container
+Foreach loop container
+Task host container
+9) Explain what is Precedence Constraint in SSIS? 
+Precedence Constraint in SSIS enables you to define the logical sequence of tasks in the order they should be executed.  You can connect all the tasks using connectors- Precedence Constraints.
+10) Explain what variables in SSIS and what are the types of variables in SSIS?
+Variable in SSIS is basically used to store values.  In SSIS, there are two types of variables system variable and user variable.
+11) Explain what is a checkpoint in SSIS?
+
+
+Checkpoint in SSIS allows the project to restart from the point of failure. Checkpoint file stores the information about the package execution, if the package run successfully the checkpoint file is deleted or else it will restart from the point of failure.
+12) Explain what is connection managers in SSIS?
+While gathering data from different sources and writing it to a destination, connection managers are helpful.  Connection manager facilitates the connection to the system that include information’s like data provider information, server name, authentication mechanism, database name, etc.
+13) Explain what is SSIS breakpoint?
+A breakpoint enables you to pause the execution of the package in business intelligence development studio during troubleshooting or development of an SSIS package.
+14) Explain what is event logging in SSIS?
+In SSIS, event logging allows you to select any specific event of a task or a package to be logged. It is very helpful when you are troubleshooting your package to understand the performance package.
+15) Explain what is logging mode property?
+SSIS packages and all the associated tasks have a property called LoggingMode.   This property accepts three possible values
+Disabled: To enable logging of the component
+Enabled: To disable logging of the component
+UseParentSetting: To use parent’s setting of the component
+16) Explain what is a data flow buffer?
+SSIS operates using buffers; it is a kind of an in-memory virtual table to hold data.
+17) For what data checkpoint data is not saved?
+Checkpoint data is not saved for ForEach Loop and ForLoop containers.
+18) Explain what is conditional split transactions in SSIS?
+Conditional split transformation in SSIS is just like IF condition, which checks for the given condition based on the condition evaluation.
+19) List out the different types of Data viewers in SSIS?
+Different types of data viewers in SSIS include
+Grid
+Histogram
+Scatter Plot
+Column Chart
+20) Mention what are the possible locations to save SSIS package?
+You can save SSIS package at
+SQL Server
+Package Store
+File System
+21) What will be your first approach if the package that runs fine in Business Intelligence Development Studio (BIDS) but fails when running from an SQL agent job?
+The account that runs SQL Agent Jobs might not have the required permission for one of the connections in your package. In such cases, either you can create a proxy account or elevate the account permissions.
+22) Explain what is the role of Event Handlers tab in SSIS?
+On the event handlers tab, workflows can be configured to respond to package events.  For instance, you can configure workflow when any task stops, fails or starts.
+23) Explain how you can notify the staff members about package failure?
+Either inside the package you could add a Send Mail Task in the event handlers, or you can even set notification in the SQL Agent when the package runs.
+24) Explain how would you do logging in SSIS?
+Logging in SSIS can be done by logging various events like onError, onWarning, etc. to the various options like a flat file, XML, SQL server table, etc.
+25) Mention how would you deploy an SSIS package on production?
+To deploy SSIS package we need to execute the manifest files and need to determine whether to deploy this into File System or onto SQL Server.  Alternatively you can also import package from SSMS from SQL Server or File System.
+26) Explain how to handle Early Arriving Facts or Late Arriving Dimension?
+Late Arriving Dimension are unavoidable, to handle these we can create a dummy dimensions with natural/business key and keep the rest of the attributes as null or default. So when actual dimension arrives, the dummy dimension is updated with Type 1 change. This is also referred as Inferred Dimensions.
+27) Explain how can you do an incremental load?
+The best and fastest way to do incremental load is by using Timestamp column in the source table and storing the last ETL timestamp.
