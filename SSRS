@@ -1,12 +1,21 @@
-1) What are the different kinds of SSRS Reports?
-Reports can be categorized into operational and analytical reports. The distinction is based on the source of data and level of analysis facilitated by any particular report. Operational reports are based on OLTP sources and are static reports and Analytical reports are based on OLAP sources and generally facilitate drill-down and drill-through for analysis. Technically, SSRS reports can be categorized into parameterized, linked, snapshot, cached, etc...
-Further Reading
-2) What are parameterized reports? What are cascading parameters in SSRS reports?
-Reports that accept parameters from users to fetch and report data conditionally, are known as parameterized reports. When you have multiple parameters in a report and values of different parameters are dependent and populated dynamically based on the value of parent parameters, it's known as a cascading parameter.
-Further Reading
-3) How would you go about developing a SSRS report?
-General development methodology for a SSRS report is to start by creating a data source. Based on the data source create one or multiple datasets as needed for parameters and the body of the report. Add required controls from the toolbox which would act as a container for the fields in the dataset. Format the controls added to the report body.  Verify and validate the report and finally deploy the report.
-Further Reading
+What are the different kinds of SSRS Reports?
+Reports can be categorized into operational and analytical reports. 
+The distinction is based on the source of data and level of analysis facilitated by any particular report. 
+Operational reports are based on OLTP sources and are static reports and Analytical reports are based on OLAP sources and generally facilitate drill-down and drill-through for analysis. 
+Technically, SSRS reports can be categorized into parameterized, linked, snapshot, cached, etc...
+
+What are parameterized reports? 
+What are cascading parameters in SSRS reports?
+Reports that accept parameters from users to fetch and report data conditionally, are known as parameterized reports. 
+When you have multiple parameters in a report and values of different parameters are dependent and populated dynamically based on the value of parent parameters, it's known as a cascading parameter.
+
+How would you go about developing a SSRS report?
+- General development methodology for a SSRS report is to start by creating a data source. 
+- Based on the data source create one or multiple datasets as needed for parameters and the body of the report. 
+- Add required controls from the toolbox which would act as a container for the fields in the dataset. 
+- Format the controls added to the report body.  
+- Verify and validate the report and finally deploy the report.
+
 4) What is a dataset and what are the different types of datasets?
 A dataset is similar to a query definition, which is executed when the report is executed. Datasets are of two types: Shared and Embedded. An embedded dataset is private to the report in which it exists and shared datasets can be shared across reports.
 Further Reading
