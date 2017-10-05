@@ -1,16 +1,25 @@
 ##ADF
 
 What is Action Listener ?
-An action listener is a class that wants to be notified when a command component fires an action event. An action listener contains an action listener method that processes the action event object passed to it by the command component
+An action listener is a class that wants to be notified when a command component fires an action event. 
+An action listener contains an action listener method that processes the action event object passed to it by the command component
 
-What are ADF BC(Business Components)? Describe them.
-All of these features can be summarized by saying that using ADF Business Components for your J2EE business service layer makes your life a lot easier. The key ADF Business Components that cooperate to provide the business service implementation are:
+What are ADF BC (Business Components)? Describe them.
+All of these features can be summarized by saying that using ADF Business Components for your J2EE business service layer makes your life a lot easier. 
+The key ADF Business Components that cooperate to provide the business service implementation are:
 
-1. Entity Object: An entity object represents a row in a database table and simplifies modifying its data by handling all DML operations for you. It can encapsulate business logic for the row to ensure your business rules are consistently enforced. You associate an entity object with others to reflect relationships in the underlying database schema to create a layer of business domain objects to reuse in multiple applications.
+1. Entity Object: 
+An entity object represents a row in a database table and simplifies modifying its data by handling all DML operations for you. It can encapsulate business logic for the row to ensure your business rules are consistently enforced. 
+You associate an entity object with others to reflect relationships in the underlying database schema to create a layer of business domain objects to reuse in multiple applications.
 
-2. Application Module: An application module is the transactional component that UI clients use to work with application data. It defines an updatable data model and top-level procedures and functions (called service methods) related to a logical unit of work related to an end-user task.
+2. Application Module: 
+An application module is the transactional component that UI clients use to work with application data. It defines an updatable data model and top-level procedures and functions (called service methods) related to a logical unit of work related to an end-user task.
 
-3. View Object: A view object represents a SQL query and simplifies working with its results. You use the full power of the familiar SQL language to join, project, filter, sort, and aggregate data into exactly the “shape” required by the end-user task at hand. This includes the ability to link a view object with others to create master/detail hierarchies of any complexity. When end users modify data in the user interface, your view objects collaborate with entity objects to consistently validate and save the changes
+3. View Object: 
+A view object represents a SQL query and simplifies working with its results. 
+You use the full power of the familiar SQL language to join, project, filter, sort, and aggregate data into exactly the “shape” required by the end-user task at hand. 
+This includes the ability to link a view object with others to create master/detail hierarchies of any complexity. 
+When end users modify data in the user interface, your view objects collaborate with entity objects to consistently validate and save the changes
 
 Which component in ADF BC manages transaction?
 Application Module, manages transaction.
@@ -39,6 +48,7 @@ We should be writing validations at Entity Object level, because they provide hi
 
 Q. What are Entity Objects?
 Entity objects are Data Access Objects (DAOs) that are responsible for persisting & caching data, validation, and encapsulating business rules.
+
 1. Represent a database table or other data source.
 2. Handles database caching.
 3. Contains attributes representing the database columns.
@@ -95,6 +105,7 @@ We should be writing validations at Entity Object level, because they provide hi
 
 Q. What are the various access scopes supported by ADF?
 ADF Faces supports the following scopes
+
 1. Application Scope
 2. Session Scope
 3. PageFlow Scope
@@ -102,10 +113,12 @@ ADF Faces supports the following scopes
 5. BackingBean Scope.
 
 Q. What is the purpose of adfc-config.xml?
-The adfc-config.xml file is the configuration file for an ADF unbounded task flow. This file contains metadata about the activities and control flows contained in the unbounded task flow.
+The adfc-config.xml file is the configuration file for an ADF unbounded task flow. 
+This file contains metadata about the activities and control flows contained in the unbounded task flow.
 
 Q. What is the purpose of faces-config.xml?
-Use the faces-config.xml file to register a Framework application’s resources, such as custom validators and managed beans, and to define all page-to-page navigation rules.
+Use the faces-config.xml file to register a Framework application’s resources, 
+such as custom validators and managed beans, and to define all page-to-page navigation rules.
 
 Q. In which xml do you configure the skin for your framework application?
 trinidad-config.xml
@@ -152,13 +165,14 @@ We can manage transaction using Application Module, different Application Module
 Q. Describe Oracle ADF Architecture?
 In line with community best practices, applications you build using the Fusion web technology stack achieve a clean separation of business logic, page navigation, and user interface by adhering to a model-view-controller architecture. As shown in in an MVC architecture:
 
-The model layer represents the data values related to the current page The view layer contains the UI pages used to view or modify that data The controller layer processes user input and determines page navigation.The business service layer handles data access and encapsulates business logic
+The model layer represents the data values related to the current page The view layer contains the UI pages used to view or modify that data The controller layer processes user input and determines page navigation.
+The business service layer handles data access and encapsulates business logic
                                         
 Oracle ADF Business Components, which simplifies building business services.
 Oracle ADF Faces rich client, which offers a rich library of AJAX-enabled UI components for web applications built with JavaServer Faces (JSF).
 
-Oracle ADF Controller, which integrates JSF with Oracle ADF Model. The ADF Controller extends the standard JSF controller by providing additional functionality, such as reusable task flows that pass control not only between JSF pages, but also between other activities, for instance method calls or other task flows.
-Simple Oracle ADF Architecture
+Oracle ADF Controller, which integrates JSF with Oracle ADF Model. 
+The ADF Controller extends the standard JSF controller by providing additional functionality, such as reusable task flows that pass control not only between JSF pages, but also between other activities, for instance method calls or other task flows.
                               
 Q. What is Association and Viewlink?
 They define the join or the link among EO’s and VO’s.Association defines link between EO’s.They can be considered as PrimaryKey/ForeignKey relationship between tables.
@@ -167,4 +181,8 @@ Q. What is  the Business Component Tester
 The mostly used component of the model layer is the tester, which is used to run and check the data model that is implemented.This serves as the first line of defense to see if data is exposed as we need it and to test the data model with out a need to create a UI.
 
 Q. What is task flow?
-ADF task flows provide a modular approach for defining control flow in an application.Instead of representing an application as a single large JSF page flow, you can break it up into a collection of reusable task flows. Each task flow contains a portion of the application’s navigational graph. The nodes in the task flows are activities. An activity node represents a simple logical operation such as displaying a page, executing application logic, or calling another task flow. The transactions between the activities are called control flow cases.
+ADF task flows provide a modular approach for defining control flow in an application.Instead of representing an application as a single large JSF page flow, you can break it up into a collection of reusable task flows. 
+Each task flow contains a portion of the application’s navigational graph. 
+The nodes in the task flows are activities. 
+An activity node represents a simple logical operation such as displaying a page, executing application logic, or calling another task flow. 
+The transactions between the activities are called control flow cases.
