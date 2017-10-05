@@ -50,7 +50,6 @@ The URL request from the browser is translated into appropriate APEX PL/SQL call
 APEX installation can be done in two ways. DBAs are more concerned about it than developers. But this determines how the URL is translated.
 Go through Mindmajix Oracle Apex Training to see the practical demonstration of the APEX Installation.
 
-
 Q. Does APEX works with non-Oracle databases?
 No.
 
