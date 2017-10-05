@@ -1,13 +1,17 @@
+##APEX
+
 Q. What is Oracle Application Express?
 Oracle Application Express (also called APEX and formerly called HTML DB) is a FREE RAD web development tool. 
 APEX is written using PL/SQL and runs completely inside of a web browser. Apex is an IDE and a runtime environment. 
 
 You use APEX to write web applications. Users, using their database user ID, log into APEX and run their application from a menu. 
+
 With the APEX IDE, you can create forms, reports and charts. All of the normal web widgets are available: radio groups, buttons, drop down lists, date pickers, etc. 
 
 You can even integrate your own JavaScript code should you need it. Output from APEX applications can be to the screen or to PDF, Excel spreadsheet, Flash, or even integrated into a web service.
 
 You can use a supplied theme for a consistent look and feel or create your own theme for a personalized feel to your application. 
+
 The most important thing to remember about Oracle Application Express is that it is designed from the ground up to be tightly integrated with the Oracle Database, to be a fully capable web development environment, and to be easy enough for savvy business users to create or extend applications for themselves.
 
 Q. What are the uses of APEX? 
@@ -33,7 +37,7 @@ Q. How do you know what version apex is install in system
 If dba view access then select comp_name, version, status from dba_registry or schema user
 
 Q. How does developer know in which version they are working
-Need to check schema name   OR select version_no from apex_release;
+Need to check schema name OR select version_no from apex_release;
 
 Q. If you forget admin password ,how will you login to apex application. 
 We need to call sql scripts to reset the password  @apxchpwd.sql (thisis same as alter user username identifies by password)
@@ -46,7 +50,9 @@ If you are running on oracle database and you want to build rich web application
 
 Q. How APEX Architecture works?
 APEX is installed on Oracle database (above 9.2 version), starting from Oracle 11g it comes pre-installed with the database. It is comprised of meta data in tables, pl/sql code and extensive JavaScript APIs.
+
 The URL request from the browser is translated into appropriate APEX PL/SQL call by either Oracle HTTP Server (Apache) with mod_plsql plugin or Embedded PL/SQL Gateway. This varies by the type of APEX installation on oracle database. After the data is processed, results are relayed back to browser as HTML. This cycle happens each time user request or submit a page. The application session state is maintained in database tables.
+
 APEX installation can be done in two ways. DBAs are more concerned about it than developers. But this determines how the URL is translated.
 Go through Mindmajix Oracle Apex Training to see the practical demonstration of the APEX Installation.
 
@@ -58,7 +64,7 @@ SQL, PL/SQL are essential. HTML, CSS and JavaScript are good to have skills to u
 (themes, templates, …. ).
 
 Q. What are the different type of apex users 
-Users are divided into three primary roles developer, Workspace administrators  and Instance administrators
+Users are divided into three primary roles developer (FORMS, REPORTS, MENU), Workspace administrators (User Worksspace Adminstrator created by Instance Administrator) and Instance administrators
 
 Q. Some views of apex
 apex_workspaces,apex_workspace_activitiy_log etc
@@ -93,10 +99,19 @@ Oracle apex by default while installation of oracle DB .But you need to configur
 3) Oracle Listner
 
 Q. How does APEX integrate with the database?
-Oracle Application Express is truly a database application. The IDE, the menus, and all of the screens you see in APEX are written in PL/SQL. The meta data for all of those screens, reports, and menus are stored in relational tables within the database. When you point your browser at the APEX URL, the Oracle HTTP listener (Apache +mod_plsql or the PL/SQL gateway, depending on database version) receives that call and uses PL/SQL and the meta data stored in database tables to paint the welcome screen. When you log into APEX you are using an actual database user ID. This user ID is associated with a role (or roles) within the database and these roles determine what access you will have. If you are an administrator, you have access to create users and workspaces. As a developer, you have access to create new applications. If you are configured as an end-user, you will be able to run one or more applications. Oracle Application Express is integrated with the Oracle Database as no environment is. If you need to extend the basic functionality of APEX, there is no need to learn additional languages or link in additional libraries. On the rare occasions you need to extend functionality, you’ll either use SQL for data access or PL/SQL when procedural code is required.
+Oracle Application Express is truly a database application. The IDE, the menus, and all of the screens you see in APEX are written in PL/SQL. The meta data for all of those screens, reports, and menus are stored in relational tables within the database. 
+
+When you point your browser at the APEX URL, the Oracle HTTP listener (Apache +mod_plsql or the PL/SQL gateway, depending on database version) receives that call and uses PL/SQL and the meta data stored in database tables to paint the welcome screen. When you log into APEX you are using an actual database user ID. This user ID is associated with a role (or roles) within the database and these roles determine what access you will have. 
+
+If you are an administrator, you have access to create users and workspaces. As a developer, you have access to create new applications. If you are configured as an end-user, you will be able to run one or more applications. Oracle Application Express is integrated with the Oracle Database as no environment is. 
+
+If you need to extend the basic functionality of APEX, there is no need to learn additional languages or link in additional libraries. On the rare occasions you need to extend functionality, you’ll either use SQL for data access or PL/SQL when procedural code is required.
 
 Q. How is APEX a RAD Tool?
-Because APEX is so tightly integrated to the database, you can prototype screens while sitting with the user. The Object Browser allows you to create database objects such as tables in addition to viewing those same objects. This allows you to create objects on the fly and then build tables around those objects. The IDE, including the above Table builder, and all applications are run within a browser. Turn-around time is immediate. Because APEX is declarative, you can easily make changes in real-time via the built-in wizards. Because APEX controls session information for you, and because you use the security framework built into the Oracle Database, you can concentration delivering applications, not on connection configuration and other typical web development time wasters.
+Because APEX is so tightly integrated to the database, you can prototype screens while sitting with the user. The Object Browser allows you to create database objects such as tables in addition to viewing those same objects. 
+This allows you to create objects on the fly and then build tables around those objects. 
+The IDE, including the above Table builder, and all applications are run within a browser. 
+Turn-around time is immediate. Because APEX is declarative, you can easily make changes in real-time via the built-in wizards. Because APEX controls session information for you, and because you use the security framework built into the Oracle Database, you can concentration delivering applications, not on connection configuration and other typical web development time wasters.
 
 Q. How much does APEX Cost and where can I get it?
 APEX comes pre-installed and completely integrated with Oracle Database Express Edition(XE). For all other editions of Oracle Database, Oracle Application Express comes as a free add-on that can be downloaded and installed. If you chose to “try before you buy”, or since it’s free, “try before you install”, you can also use the hosted APEX Online facility. This facility allows you to create and run complete applications just as you would on your own equipment.
@@ -121,6 +136,7 @@ Oracle Database 10g Express Edition only supports Oracle APEX version 2.2.
 
 Q. What applications come with APEX?
 The current version of APEX allows you to download pre-packaged applications for you to learn from and/or modify for your own uses. You can currently download (form Oracle’s Technology site):
+
 1. Employee Directory Lookup – This is exactly what it sounds like.
 2. Ask The Expert – Q&A Site ala “asktom”.
 3. Bug Tracker – Log and track bug reports.
@@ -129,12 +145,17 @@ The current version of APEX allows you to download pre-packaged applications for
 6. Project Issue Tracker – Define, assign, and report project issues.
 7. Online Store – Catalog and shopping cart.
 8. Software Projects – Project task tracker.
-You are by no means limited to this list of projects. An Internet search for
-“oracle APEX projects”
+
+You are by no means limited to this list of projects. 
+An Internet search for “oracle APEX projects”
 Gets almost 500,000 hits and more are being posted all the time.
 
 Q. Where can I try APEX?
-As mentioned above, you can sign up for a free account at APEX.ORACLE.COM (Oracle’s hosted Application Express site). When you sign up for an account, you identify the work area name that you want to use and identify an administrator. From there you can create applications and users just as you would on your own hardware and systems.apex.oracle.com is not intended for production systems, it is intended for exploration and testing. For additional hosting companies, check out the Oracle. These sites offer varying levels of hosting including free developer access and full application deployment.
+As mentioned above, you can sign up for a free account at APEX.ORACLE.COM (Oracle’s hosted Application Express site). 
+When you sign up for an account, you identify the work area name that you want to use and identify an administrator. 
+From there you can create applications and users just as you would on your own hardware and systems.apex.oracle.com is not intended for production systems, it is intended for exploration and testing. 
+For additional hosting companies, check out the Oracle. 
+These sites offer varying levels of hosting including free developer access and full application deployment.
 
 Q. What kind of support exists for APEX?
 Application Express has a robust community to help you develop, deliver, and use APEX applications. The first stop for support would be the APEX Forum sat Oracle Technology Network. This active forum provides tips and answers from many experts both inside and outside of Oracle.
@@ -146,7 +167,8 @@ APEX MAILING LIST – Sign up for info and Q&A.
 THE ORACLE APEX COMMUNITY LISTING The list is growing daily. 
 
 Q. Where can I get more information?
-In addition to the OTN forums and community sites, Application Express has a huge following in the blogosphere. Many expert level resources maintain blogs about APEX. Some particularly well known blogs are:
+In addition to the OTN forums and community sites, Application Express has a huge following in the blogosphere. 
+Many expert level resources maintain blogs about APEX. Some particularly well known blogs are:
 
 SCOTT SPENDOLINI– APEX Guru and owner of Sumner Technologies (an APEX Training, Services, and Consulting company).
 
@@ -154,7 +176,7 @@ PATRICK WOLF– Inside Oracle APEX, Patrick is along-time Oracle veteran.
 
 DIMITRI GELLIS – Another long-time Oracle vetand co-founder of APEX Evangelists, an APEX specific company, with John Scott.
 
-JOHN SCOTT– As mentioned above, co-founder of APEX Evangelists, an Oracle ACE, and Application Express Developer of the Year for2006.
+JOHN SCOTT– As mentioned above, co-founder of APEX Evangelists, an Oracle ACE, and Application Express Developer of the Year for 2006.
 You can find all of these and more at the OTN COMMUNITY SITE.
 
 Q. What is the future of Application Express?
@@ -168,20 +190,31 @@ Currently, Oracle estimates that around 100,000 developers are using Application
 
 Q. Are there any limitations in using Oracle XE?
 XE is free but Oracle has built certain limitations into the product.
+
 The first limitation is memory. 
+
 Oracle Database XE can address only 1GB of RAM. 
+
 This limitation mainly affects how many users can access the database concurrently and how well it performs.
+
 The second limit is that XE will only use one CPU. 
+
 XE will run on a multi -CPU computer but wont scale up to use those CPUs. 
+
 This functionality requires Oracle Database Standard Edition or Enterprise Edition.
+
 The third limit is that only a single XE database can run on any given computer. You do not need a database for each application. Instead, Oracle uses the concept of schemas to separate applications.
+
 Finally, a 4GB limit is enforced on disk space. 4GB is a huge amount of storage for most applications. You can also use APEX to link to other databases (on other servers) for more storage as needed.
 
 Q. How do I backup and restore an Oracle XE Database?
 Backing up and restoring Oracle Database XE is based on protecting the physical files that make up the
 database:
+
 There are 6 files in C:oraclexeoradataXE: CONTROL.DBF, SYSAUX.DBF, SYSTEM.DBF, TEMP.DBF, UNDO.DBF and USER.DBF.
+
 The control file SPFILE is in C: oraclexe app oracle product 10.2.0 server dbs.
+
 If in ARCHIVELOG mode, the redo log files should be backed up. Two redo log files are in
 C: oraclexe app oracle Vlash_recovery_areaVE ONLINELOG.
 Cold back up is when you stop the database and zip up all those 9 files (in NOARCHIVEMOD). When you restore the database copy all 9 files back to the same folders.
@@ -189,33 +222,47 @@ If the application is in ARCHIVEMOD and should run 24X7 then use hot backup.
 
 Q. How to make applications portable?
 To ensure application can easily be moved from one Application Express environment to another you should avoid hard coded references to values that may change between environments.
+
 For example, the application ID is often referenced in URLs throughout an application. The Application Express engine uses the application ID to uniquely identify the application fetched and run from the application repository. Rather than using the actual application ID as is done in the URL below:
+
 f?p=100:1:&APP_SESSION.:
+
 It is recommended to use an indirect reference instead:
 f?p=&APP_ID.:1:&APP_SESSION.:
+
 Here, &APP_ID. is a built in substitution string that replaces the hard coded value 100. Using this technique, no modifications have to be made prior to deployment, even if the application ID changes.
+
 Similarly, to ensure smooth deployment, references to images in templates, HTML regions or SQL queries should use substitution strings instead of hard coded paths.
+
 Consider, for example, an application whose images are stored on the file system in the virtual path /dev/images/ in a development environment and /prod/images/ on the production server.
+
 Use substitution strings at the application level to avoid having to make changes throughout the application before deployment. E.g., define substitution string IMAGE_PATH, and give it a value of /dev/images/
 
 Q. Should static files be placed in the database?
 Application Express applications may reference additional external files such as cascading style sheets (CSS), images and Javascript libraries.
+
 These images can either be placed on the file system of the server that runs the web server or, when they are uploaded using Application Express’s application builder, can be stored inside the database.
+
 A benefit of managing files such as images and CSS in the database with the application builder is that they can be exported and imported into another Application Express environment or workspace using only a browser.
+
 However, storing related files in the database is recommended only when you have relatively few images and when the application is not expected to endure high request throughput.
+
 When images, CSS and Javascript libraries are stored in the database, a database connection is established each time the browser requests one of these files.
+
 In a high throughput application this may result in undue and unwanted strain on the database.
 
 Q. How do I separate development from production environment?
 Depending on requirements for the availability of the application, the size of the user population and other factors you can decide how to divide the development environment from the production environment.
 
 For certain applications, it is acceptable to combine the development server with the deployment server, as long as the end users understand that sometimes the application is not available.
+
 Other applications may require two (development and production) or even three (development, test and production) servers.
 
 In Application Express applications can be moved from environment to environment using an export and import facility for application definitions.
 
 With one server available to run the database and Application Express, you can still separate the development version of an application from its production version by using two workspaces accessing separate schemas.
-In this case one workspace will be used by developers and the other will be the workspace in which the application is deployed in production. We will add few more Oracle Apex Interview Questions soon.
+
+In this case one workspace will be used by developers and the other will be the workspace in which the application is deployed in production. 
 
 Q. Which platforms are supported by Oracle Application Express?
 Oracle Apex works on the following operating systems:
