@@ -1,4 +1,4 @@
-#ADF
+##ADF
 
 What is Action Listener ?
 An action listener is a class that wants to be notified when a command component fires an action event. An action listener contains an action listener method that processes the action event object passed to it by the command component
@@ -68,6 +68,7 @@ Read-only SQL –Based View Objects:
 
 Q. What is Application Module?
 An ADF components application module is a service object that coordinates view objects for a specific task in the same way that a form usually encapsulates a single user task. It contains only the business services that the application requires, and can be compared to a Forms module.
+
 An application module can represent and assist with tasks such as:
 1. Updating customer information
 2. Creating new order
@@ -120,9 +121,13 @@ Value binding occurs.
 
 Q. Explain Data binding & its types, sub-types?
 Oracle Application Development Framework (Oracle ADF) provides several types of binding objects to support the attributes and operations exposed by the Oracle ADF data controls for a particular business object:
+
 ITERATOR BINDING, one per accessor attribute that your page or panel displays. Iterates over the business objects of the data collection and maintains the row currency and state.
+
 VALUE BINDINGS, one for each data-bound UI component. Provides access to data.
+
 ACTION BINDING, specifically defined for a button component. Provides access to operations defined by the business object.
+
 Value Binding Types:
 1. Attribute Value Binding
 2. Boolean Value Binding
@@ -146,6 +151,7 @@ We can manage transaction using Application Module, different Application Module
 
 Q. Describe Oracle ADF Architecture?
 In line with community best practices, applications you build using the Fusion web technology stack achieve a clean separation of business logic, page navigation, and user interface by adhering to a model-view-controller architecture. As shown in in an MVC architecture:
+
 The model layer represents the data values related to the current page The view layer contains the UI pages used to view or modify that data The controller layer processes user input and determines page navigation.The business service layer handles data access and encapsulates business logic
                                         
 Oracle ADF Business Components, which simplifies building business services.
