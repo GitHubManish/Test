@@ -1,0 +1,83 @@
+1. What is the Difference between WCF and ASMX Web Services?
+A simple and basic difference is that ASMX or ASP.NET web service is designed to send and receive messages using SOAP over HTTP only. While WCF can exchange messages using any format (SOAP is default) over any transport protocol (HTTP, TCP/IP, MSMQ, NamedPipes, etc).
+Another tutorial WCF Vs ASMX has detailed discussion on it.
+2. What are WCF Service Endpoints? Explain.
+For Windows Communication Foundation services to be consumed, it’s necessary that it must be exposed; Clients need information about service to communicate with it. This is where service endpoints play their role.
+A WCF service endpoint has three basic elements, i.e. Address, Binding and Contract.
+Address: It defines "WHERE". Address is the URL that identifies the location of the service.
+Binding: It defines "HOW". Binding defines how the service can be accessed.
+Contract: It defines "WHAT". Contract identifies what is exposed by the service.
+3. What are the Possible Ways of Hosting a WCF Service? Explain.
+For a Windows Communication Foundation service to host, we need at least a managed process, a ServiceHost instance and an Endpoint configured. Possible approaches for hosting a service are:
+Hosting in a Managed Application/ Self Hosting 
+Console Application
+Windows Application
+Windows Service
+Hosting on Web Server 
+IIS 6.0 (ASP.NET Application supports only HTTP)
+Windows Process Activation Service (WAS) i.e. IIS 7.0 supports HTTP, TCP, NamedPipes, MSMQ.
+4. How Can We Achieve Operation Overloading While Exposing WCF Services?
+By default, WSDL doesn’t support operation overloading. Overloading behavior can be achieved by using "Name" property of OperationContract attribute.
+Hide   Copy Code
+[ServiceContract]
+interface IMyCalculator
+{
+   [OperationContract(Name = "SumInt")]
+   int Sum(int arg1,int arg2);
+
+   [OperationContract(Name = "SumDouble")]
+   double Sum(double arg1,double arg2);
+}
+When the proxy will be generated for these operations, it will have 2 methods with different names, i.e., SumInt and SumDouble.
+5. What Message Exchange Patterns (MEPs) are Supported by WCF? Explain Each of Them Briefly.
+Request/Response
+One Way
+Duplex
+Request/Response
+It’s the default pattern. In this pattern, a response message will always be generated to consumer when the operation is called, even with the void return type. In this scenario, response will have empty SOAP body.
+One Way
+In some cases, we are interested to send a message to service in order to execute certain business functionality but not interested in receiving anything back. OneWay MEP will work in such scenarios. If we want queued message delivery, OneWay is the only available option.
+Duplex
+The Duplex MEP is basically a two-way message channel. In some cases, we want to send a message to service to initiate some longer-running processing and require a notification back from service in order to confirm that the requested process has been completed.
+6. What is DataContractSerializer and How is it Different from XmlSerializer?
+Serialization is the process of converting an object instance to a portable and transferable format. So, whenever we are talking about web services, serialization is very important.
+Windows Communication Foundation has DataContractSerializer that is new in .NET 3.0 and uses opt-in approach as compared to XmlSerializer that uses opt-out. Opt-in means specify whatever we want to serialize while Opt-out means you don’t have to specify each and every property to serialize, specify only those you don’t want to serialize. DataContractSerializer is about 10% faster than XmlSerializer but it has almost no control over how the object will be serialized. If we wanted to have more control over how object should be serialized, then XmlSerializer is a better choice.
+7. How Can We Use MessageContract Partially with DataContract for a Service Operation in WCF?
+MessageContract must be used all or none. If we are using MessageContract into an operation signature, then we must use MessageContract as the only parameter type and as the return type of the operation.
+8. Which Standard Binding could be used for a Service that was Designed to Replace an Existing ASMX Web Service?
+The basicHttpBinding standard binding is designed to expose a service as if it is an ASMX/ASP.NET web service. This will enable us to support existing clients as applications are upgrade to WCF.
+9. Please Explain Briefly Different Instance Modes in WCF?
+WCF will bind an incoming message request to a particular service instance, so the available modes are:
+Per Call: Instance created for each call, most efficient in term of memory but need to maintain session.
+Per Session: Instance created for a complete session of a user. Session is maintained.
+Single: Only one instance created for all clients/users and shared among all. Least efficient in terms of memory.
+10. Please Explain Different Modes of Security in WCF? Or Explain the Difference between Transport and Message Level Security
+In Windows Communication Foundation, we can configure to use security at different levels.
+Transport Level security means providing security at the transport layer itself. When dealing with security at Transport level, we are concerned about integrity, privacy and authentication of message as it travels along the physical wire. It depends on the binding being used how WCF makes it secure because most of the bindings have built-in security. 
+Hide   Copy Code
+<netTcpBinding>
+<binding name="netTcpTransportBinding">
+    <security mode="Transport">
+        <Transport clientCredentialType="Windows" />
+    </security>
+</binding>
+</netTcpBinding>
+Message Level Security For Transport level security, we actually ensure the transport that is being used should be secured but in message level security, we actually secure the message. We encrypt the message before transporting it. 
+Hide   Copy Code
+<wsHttpBinding>
+<binding name="wsHttpMessageBinding">
+    <security mode="Message">
+        <Message clientCredentialType="UserName" />
+    </security>
+</binding>
+</wsHttpBinding>
+It totally depends upon the requirements, but we can use a mixed security mode also as follows:
+Hide   Copy Code
+<basicHttpBinding>
+<binding name="basicHttp">
+    <security mode="TransportWithMessageCredential">
+        <Transport />
+          <Message clientCredentialType="UserName" />
+    </security>
+</binding>
+</basicHttpBinding>
