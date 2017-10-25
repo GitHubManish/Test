@@ -1,0 +1,30 @@
+What purpose does the model database serve?
+The model database, as its name implies, serves as the model (or template) for all databases created on the same instance. If the model database is modified, all subsequent databases created on that instance will pick up those changes, but earlier created databases will not. Note that TEMPDB is also created from model every time SQL Server starts up.
+How do you trace the traffic hitting a SQL Server?
+SQL profiler is the SQL Server utility you can use to trace the traffic on the SQL Server instance. Traces can be filtered to narrow down the transactions that are captured and reducing the overhead incurred for the trace. The trace files can be searched, saved off, and even replayed to facilitate troubleshooting.
+What types of replication are supported in SQL Server?
+SQL Server has three types of replication: Snapshot, Merge, and Transaction. Snapshot replication creates a snapshot of the data (point-in-time picture of the data) to deliver to the subscribers. This is a good type to use when the data changes infrequently, there is a small amount of data to replicate, or large changes occur over a small period of time.
+
+Merge replication uses a snapshot to seed the replication. Changes on both sides of the publication are tracked so the subscriber can synchronize with the publisher when connected. A typical use for this type of replication is in a client and server scenario. A server would act as a central repository and multiple clients would independently update their copies of the data until connected. At which time, they would all send up their modifications to the central store.
+Transaction replication also begins with a snapshot only this time changes are tracked as transactions (as the name implies). Changes are replicated from publisher to subscriber the same as they occurred on the publisher, in the same order as they occurred, and in near real time. This type of replication is useful when the subscriber needs to know every change that occurred to the data (not point-in-time), when the change volume is high, and when the subscriber needs near real-time access to the changes.
+Why would you use SQL Agent?
+SQL Agent is the job scheduling mechanism in SQL Server. Jobs can be scheduled to run at a set time or when a specific event occurs. Jobs can also be executed on demand. SQL Agent is most often used to schedule administrative jobs such as backups.
+What happens on checkpoint?
+Checkpoints, whether scheduled or manually executed, cause the transaction log to be truncated up to the beginning of the oldest open transaction (the active portion of the log). That is, the dirty pages from the buffer cache are written to disk. Storing committed transactions in the cache provides a performance gain for SQL Server. However, you do not want the transaction log to get too big because it might consume too many resources and, should your database fail, take too long to process to recover the database. 
+One important thing to note here is that SQL Server can only truncate up to the oldest open transaction. Therefore, if you are not seeing the expected relief from a checkpoint, it could very well be that someone forgot to commit or rollback their transaction. It is very important to finalize all transactions as soon as possible.
+What is DBCC?
+DBCC statements are Database Console Commands and come in four flavors: Maintenance, Informational, Validation, and Miscellaneous. Maintenance commands are those commands that allow the DBA to perform maintenance activities on the database such as shrinking a file. Informational commands provide feedback regarding the database such as providing information about the procedure cache. Validation commands include commands that validate the database such as the ever-popular CHECKDB. Finally, miscellaneous commands are those that obviously don't fit in the other three categories. This includes statements like DBCC HELP, which provides the syntax for a given DBCC command.
+How can you control the amount of free space in your index pages?
+You can set the fill factor on your indexes. This tells SQL Server how much free space to leave in the index pages when re-indexing. The performance benefit here is fewer page splits (where SQL Server has to copy rows from one index page to another to make room for an inserted row) because there is room for growth built in to the index.
+Why would you call Update Statistics?
+Update Statistics is used to force a recalculation of query optimization statistics for a table or indexed view. Query optimization statistics are automatically recomputed, but in some cases, a query may benefit from updating those statistics more frequently. Beware though that re-computing the query statistics causes queries to be recompiled. This may or may not negate all performance gains you might have achieved by calling update statistics. In fact, it could have a negative impact on performance depending on the characteristics of the system.
+What is a correlated sub-query?
+A correlated sub-query is a nested query that is linked to the outer query. For instance, say I wanted to find all the employees who have not entered their time for the week. I could query the Employee table to get their first and last name, but I need to look at the TimeEntry table to see if they've entered their time or not. I can't do a straight join here because I'm looking for the absence of time data, so I'll do a correlated sub-query similar to this:
+SELECT FirstName, LastName
+FROM EMPLOYEE e
+WHERE NOT EXISTS (SELECT 1 FROM TimeEntry te
+WHERE te.EmpID = e.EmpID
+AND te.WeekID = 35)
+Notice that the inner query relates to the outer query on the employee ID, thus making it a correlated sub-query. The inner query will be evaluated once per outer query row.
+What authentication modes does SQL Server support?
+SQL Server supports Windows Authentication and mixed-mode. Mixed-mode allows you to use both Windows Authentication and SQL Server Authentication to log into your SQL Server. It’s important to note that if you use Windows Authentication, you will not be able to log in as sa.
