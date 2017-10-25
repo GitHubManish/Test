@@ -1,0 +1,604 @@
+Foundation: HTTP and REST Concept
+Resources and URIs
+HTTP Methods
+HTTP Status Codes
+HTTP Content
+Internet Media Types
+REST
+JSON & XML
+HTTP (Hypertext Transfer Protocol) is an application level protocol that is used to deliver data such as html files, image files, query results, etc. on the World Wide Web. HTTP is stateless protocol means after one cycle of request and response the server forgets everything about the cycle, it considers another request from the same client as a new request from a new client.
+Below is a simple Client-Server architecture of HTTP protocol.
+Resource and URIs:
+URI stands for Uniform Resource Identifier. URI is a string of characters used to identify a resource on the internet either by location or by name, or by both.
+URI is used to identify resources, For example, In real world assume there is a person named “Muhammad Ahmad” who lives in “2807, Badar Street, Dubai”. We can find that person by name or by address or by both.
+URI can be categorized into 2 as URL and URN
+URL: Uniform Resource Locator
+URN: Uniform Resource Name
+
+URI is used to send requests to the server. It can be done with both URN and URL, but using URN is inefficient because there can be many resources with same name. So most commonly use method is URL and it consists of two required components; The Protocol & The Domain.
+Look at the following URL:
+http://www.webdevelopmenthelp.net/asp-net-mvc
+Here the red colored part is the protocol and gold color part is the domain, other parts are optional. It may contain the port/path/query strings/fragments. 
+HTTP Methods:
+There are multiple HTTP methods which can be used according to the user requirements. Those methods are case-sensitive and they must used in uppercase.
+GET – The GET method is used to retrieve information from the given server using a given URI.
+HEAD – Same as GET, but transfers the status line and header section only.
+POST – A POST request is used to send data to the server.
+PUT – Replaces all current resources with the uploaded content.
+DELETE – Removes all current resources given by a URI.
+CONNECT – Establishes a tunnel to the server identified by a given URI.
+OPTIONS – Describes the communication options for the target resource.
+TRACE – Performs a message loop-back test along the path to the target resource.
+Among these methods GET/PUT/POST/DELETE are the most popular methods.
+HTTP Status Codes:
+HTTP Status Codes are the 3 digit integers which contain in server response. There is a meaning for each number. Followings are the set of status codes with its meaning:
+1xx: Informational-It means the request has been received and the process is continuing.
+2xx: Success-It means the action was successfully received, understood, and accepted.
+3xx: Redirection-It means further action must be taken in order to complete the request.
+4xx: Client Error-It means the request contains incorrect syntax or cannot be fulfilled
+5xx: Server Error-It means the server failed to fulfill an apparently valid request.
+HTTP Content:
+There are more contents in a HTTP header field. HTTP header fields are components of the header section of request or response messages in the Hypertext Transfer Protocol. It defines the operating parameters of an HTTP transaction.
+For example, HTTP request to fetch webapi.htm page from the web server running on webdevelopmenthelp.net.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+//Client request
+GET /webapi.htm HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.webdevelopmenthelp.net
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+ 
+//Server response
+HTTP/1.1 200 OK
+Date: Wed, 01 Feb 2017 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Mon, 12 Feb 2017 19:15:56 GMT
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
+Internet Media Types:
+It is a file identification mechanism on the MIME encoding system, formerly “MIME type”, the Internet media type has become the de facto standard for identifying content on the Internet.
+For example, an instance of receiving an email from a server with an attachment, the server embed the media type of the attachment in the message header. So the browser can launch appropriate helper application or plug-in.
+REST:
+REST (Representational State Transfer) is an architectural style for designing applications and it dictates to use HTTP for making calls for communications instead of complex mechanism like CORBA, RPC or SOAP.
+There are few principles associated with REST architectural style:
+Everything is a resource i.e. File, Images, Video, WebPage etc.
+Every Resource is identified by a Unique Identifier.
+Use simple and Uniform Interfaces.
+Everything is done via representation (sending requests from client to server and receiving responses from server to client).
+Be Stateless- Every request should be an independent request.
+JSON & XML:
+XML stands for eXtensible Markup Language, it is a markup language like HTML and designed to store and transport data. XML doesn’t do anything, but it store data in a specific format.
+Following is a letter written from Ahmad to Hamza in XML format:
+
+1
+2
+3
+4
+5
+6
+<Letter>
+  	<to>Hamza</to>
+  	<from>Ahmad</from>
+  	<heading>Invitation</heading>
+  	<body>I invite you to my birthday party in Dubai</body>
+</Letter>
+The above XML file represent the following message.
+
+1
+2
+3
+4
+5
+Letter
+To: Hamza
+From: Ahmad
+Invitation
+I invite you to my birthday party in Dubai
+JSON (JavaScript Object Notation) also used to store and transport data. The above message can be transferred into JSON in following way:
+
+1
+2
+//Invitation
+{Letter:{to:'Hamza', from:'Ahmad', heading:'Invitation', body:'I invite you to my birthday party in Dubai'}}
+
+How to build a SPA (Single Page Application) using ASP.NET Web API 2, Entity Framework and jQuery? Complete Application from start to end.
+Move on with ASP.NET Web API Interview Questions
+Now, we are well familiar with HTTP and REST Concepts, let’s move on with ASP.NET Web API Interview Questions and Answers in details.
+What is ASP.NET Web API?
+ASP.NET Web API is a framework that simplifies building HTTP services for broader range of clients (including browsers as well as mobile devices) on top of .NET Framework. Using ASP.NET Web API we can create non-SOAP based services like plain XML or JSON strings etc. with many other advantages including:
+Create resource-oriented services using the full features of HTTP.
+Exposing services to a variety of clients easily like browsers or mobile devices etc.
+Back to top
+What are the advantages of using ASP.NET Web API?
+Using ASP.NET Web API has a number of advantages, but core of the advantages are:
+It works the HTTP way using standard HTTP verbs like GET, POST, PUT, DELETE etc for all CRUD operations.
+Complete support for routing.
+Response generated in JSON or XML format using MediaTypeFormatter.
+It has the ability to be hosted in IIS as well as self-host outside of IIS.
+Supports Model binding and Validation.
+Support for OData.
+and more….
+For implementation on performing all CRUD operations using ASP.NET Web API, click here.
+Back to top
+What new features are introduced in ASP.NET Web API 2.0?
+More new features introduced in ASP.NET Web API framework v2.0 are as follows:
+Attribute Routing
+External Authentication
+CORS (Cross-Origin Resource Sharing)
+OWIN (Open Web Interface for .NET) Self Hosting
+IHttpActionResult
+Web API OData
+You can follow a good Web API new feature details on Top 5 New Features in ASP.NET Web API 2 here.
+Back to top
+What is Attribute Routing in ASP.NET Web API 2.0?
+ASP.NET Web API v2 now support “Attribute Routing” along with convention-based approach. In convention-based routes, the route templates are already defined as follows:
+
+1
+2
+3
+4
+5
+Config.Routes.MapHttpRoute(
+ name: "DefaultApi",
+ routeTemplate: "api/{Controller}/{id}",
+ defaults: new { id = RouteParameter.Optional }
+);
+So, any incoming request is matched against already defined routeTemplate and further routed to matched controller action. But it’s really hard to support certain URI patterns using conventional routing approach like nested routes on same controller. For example, authors have books or customers have orders, students have courses etc.
+Such patterns can be defined using attribute routing i.e. adding an attribute to controller action as follows:
+
+1
+2
+3
+4
+=> books/1/authors
+ 
+[Route("books/{bookId}/authors")]
+public IEnumerable<Author> GetAuthorsByBook(int bookId) { ..... }
+
+
+1
+2
+3
+4
+=> customers/1/orders
+ 
+[Route("customers/{customerId}/orders")]
+public IEnumerable<Order> GetOrdersByCustomer(int customerId) { ..... }
+
+
+1
+2
+3
+4
+=> students/1/courses  
+ 
+[Route("students/{studentId}/courses")]
+public IEnumerable<Course> GetCoursesByStudent(int studentId) { ..... }
+Back to top
+What is External Authentication?
+To reduce development time, external authentication services are currently available in abundance to help web developers when creating new web applications. Since most of the web users have several existing accounts for trendy web services and social media websites, when the authentication service from an external web service is used by a web application, time that would have been spent creating an authentication implementation get saved. Using an external authentication service saves end users from having to create another account for your web application, and also from having to remember another username and password.
+In earlier days, developers had two choices – create their own authentication implementation, or to integrate an external authentication service into their applications. The user agent or web browser makes a request to a web application, through which web browser is redirected to external authentication service. The user sends their credentials to the external authentication service, and external authentication service checks the credentials for their authenticity and if they are successfully authenticated, the external authentication service will redirect the user to the original web application with some data which the external authentication service will send to the web application.
+The web application will uses the data provided by the external authentication service to verify that the user has been successfully authenticated or not, and the web application may use the same data to collect more information about the user. Once the processing of the user’s information has been done by the application, the web application will return the appropriate response to the user based on its authorization settings.
+Accelerate your skills to build a RESTful Web API with ASP.NET Core.
+Take a closer look at the redesigned ASP.NET 5
+Understand the REST basics and its constraints through real-life examples
+Walk through the building blocks of ASP.NET Web API with scenario-based examples
+Implement various data transfer operations and content negotiation
+Deploy security techniques in your application to avoid threats
+Be guided through advanced topics such as dependency Injection, API versioning, and HTTP caching to build a maintainable application
+Get tips and best practices to write better, highly scalable, and performant Web API services
+Learn More Now…Click Here
+Back to top
+Explain briefly CORS(Cross-Origin Resource Sharing)?
+ASP.NET WebAPI is a trending technology in today’s world. Everyone tries to access the service through AJAX requests on the server side. The problem is when a WebAPI is hosted and the other applications on different domains try to access the WebAPI through a request. Here, enabling CORS plays a vital role in WebAPI.
+Browsers only allow a web page to make AJAX requests within the same domain. Its security prevents a web page from making AJAX requests to another domain. This is called origin policy.
+CORS (Cross-origin resource sharing) is a technique that allows restricted resources on a web page to be requested from another domain outside the domain of which the first resource was served. A web page may freely attach cross-origin images, scripts, stylesheets, iframes, and videos. The same-origin security policy by default does not allow certain “cross-domain” requests, notably Ajax requests.
+Cross-origin resource sharing provides a way by which a browser and server can interact to determine whether allowing the cross-origin requests are safe or not. It gives more functionality and freedom than same-origin requests and is more secure than simply allowing all cross-origin requests. For security reasons, browsers restrict all cross-origin HTTP requests initiated from scripts initially. For example, the same-origin policy is followed by XMLHttpRequest, a web application using this type of requests can only make HTTP requests to its own domain.
+Back to top
+Explain briefly OWIN (Open Web Interface for .NET) Self Hosting?
+OWIN (Open Web Interface for .NET) is an interface for .NET between .NET web applications and web server. It is an open source technology. OWIN aims to decouple the connection between ASP.NET applications and IIS by giving a standard interface. Developers of web servers may be sure that, if they implement OWIN properly, ASP.NET applications can run on their server. Similarly, new web frameworks can be developed as a replacement to ASP.NET.
+In addition to decoupling web frameworks and web servers, OWIN permits chaining along middleware into a pipeline. A web framework will move with OWIN while not knowing whether it’s interacting directly with the underlying web server, or with one or additional layers of middleware (each implementing OWIN) on top of the web server. This enables infrastructure issues, like authentication, to be split out into separate modules. This can be fascinating because it decouples them from the application’s own code, and makes them reusable across applications. Microsoft has now integrated number of OWIN modules as options that were only a part of the core ASP.NET framework in earlier days in its project named katana. This enables them to be reused in different web frameworks.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+using Owin; 
+using System.Web.Http; 
+ 
+namespace OwinSample 
+{ 
+    public class Startup 
+    { 
+        public void Configuration(IAppBuilder appBuilder) 
+        { 
+                        HttpConfiguration config = new HttpConfiguration(); 
+            config.Routes.MapHttpRoute( 
+                name: "DefaultApi", 
+                routeTemplate: "api/{controller}/{id}", 
+                defaults: new { id = RouteParameter.Optional } 
+            ); 
+ 
+            appBuilder.UseWebApi(config); 
+        } 
+    } 
+}
+Web API Controller
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+//// Web API Controller
+using System.Collections.Generic;
+using System.Web.Http;
+ 
+namespace OwinSample 
+{ 
+    public class ValuesController : ApiController 
+    { 
+        
+        public IEnumerable<string> Get() 
+        { 
+            return new string[] { "value1", "value2" }; 
+        } 
+ 
+        
+        public string Get(int id) 
+        { 
+            return "value"; 
+        } 
+ 
+        
+        public void Post([FromBody]string value) 
+        { 
+        } 
+ 
+        
+        public void Put(int id, [FromBody]string value) 
+        { 
+        } 
+ 
+                public void Delete(int id) 
+        { 
+        } 
+    } 
+}
+Making Request:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+//// Making Request
+using Microsoft.Owin.Hosting;
+using System;
+using System.Net.Http;
+ 
+namespace OwinSample 
+{ 
+    public class Program 
+    { 
+        static void Main() 
+        { 
+            string baseAddress = "http://localhost:9000/"; 
+ 
+            
+            using (WebApp.Start<Startup>(url: baseAddress)) 
+            { 
+                
+                HttpClient client = new HttpClient(); 
+ 
+                var response = client.GetAsync(baseAddress + "api/values").Result; 
+ 
+                Console.WriteLine(response); 
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result); 
+                Console.ReadLine(); 
+            } 
+        } 
+    } 
+ }
+Back to top
+What is ASP.NET Web API OData?
+The Open Data Protocol (OData) is a data access protocol created for the web. OData gives a consistent procedure to query and manipulates data sets via CRUD operations (Create, Retrieve, Update, and Delete). ASP.NET web API supports each of the v3 and v4 protocol.
+One of the vital goals with this new implementation has been to support the side by side situation where customers will have v3 and v4 services running on a similar application. To that impact, we had to create some changes in the current naming of some classess and methods to permit for an inexpensive user experience.
+To Create a Web API OData Solution, followings are the basic steps:
+Create a Modal Class in Models with get set methods.
+Add OData Controller.
+Set OData Route.
+
+1
+2
+3
+4
+5
+6
+7
+public static void registration(HttpConfiguration config)
+{
+    ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+    builder.EntitySet<Models.personModel>("Person");
+    config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
+     config.EnableSystemDiagnosticsTracing();
+}
+Set Get() method.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.ModelBinding;
+using System.Web.Http.OData;
+using System.Web.Http.OData.Routing;
+using MvcApplication2.Models;
+ 
+namespace MvcApplication2.Controllers
+{
+    public class personController : ODataController
+    {
+        [Queryable]
+        public IQueryable<personModel> Getperson()
+        {
+                List<personModel> list = new List<personModel>{
+                new personModel{Id=1, name = "Ahmad",surname="Imran",age=25},
+                new personModel{Id=2, name = "Hamza",surname="Ghani",age=22}
+            }; 
+            return list.AsQueryable<personModel>();
+        }
+    }
+}
+With ASP.NET Web API 2, support for $expand, $select, and $value options added for OData. These options simplify to control the representation that is returned from the server.
+$expand: Normally, response doesn’t include related entities if we query an OData collection. By using $expand, we can get related entities inline in response.
+$select: It’s used if we wanted to include subset of properites in response instead of all.
+$value: It allows to return raw value of the property instead returning in OData format.
+
+Back to top
+WCF Vs ASP.NET Web API?
+Actually, Windows Communication Foundation is designed to exchange standard SOAP-based messages using variety of transport protocols like HTTP, TCP, NamedPipes or MSMQ etc. On the other hand, ASP.NET API is a framework for building non-SOAP based services over HTTP only. Back to top
+Free Online Tests 
+
+C# Online Test
+
+ASP.NET Online Test
+
+ASP.NET MVC Online Test
+
+ASP.NET AJAX Online Test
+
+HTML5 Online Test
+
+jQuery Online Test
+
+WCF RESTful Service Vs ASP.NET Web API?
+Although both WCF REST and ASP.NET Web API follows the REST architecture but these have follow differences:
+WCF REST
+Microsoft introduced “WebHttpBinding” to be used for creating WCF RESTful Services.
+HTTP Methods are mapped to attributes, for example, “WebGet” for GET method and “WebInvoke” for POST.
+ASP.NET Web API
+As compared with WCF REST, Web API supports full features of HTTP.
+Its possible to host Web API in IIS as well as in an application.
+Back to top
+Is it true that ASP.NET Web API has replaced WCF?
+It’s a misconception that ASP.NET Web API has replaced WCF. It’s another way of building non-SOAP based services, for example, plain XML or JSON string etc.
+Yes, it has some added advantages like utilizing full features of HTTP and reaching more clients such as mobile devices etc.
+But WCF is still a good choice for following scenarios:
+If we intended to use transport other than HTTP e.g. TCP, UDP or Named Pipes.
+Messag Queuing scenario using MSMQ.
+One-way communication or Duplex communication
+A good understanding for WCF(Windows Communication Foundation), please follow WCF Tutorial.
+Back to top
+MVC Vs ASP.NET Web API?
+As in previous ASP.NET Web API Interview Questions, we discussed that purpose of Web API framework is to generate HTTP services that reaches more clients by generating data in raw format, for example, plain XML or JSON string. So, ASP.NET Web API creates simple HTTP services that renders raw data. On the other hand, ASP.NET MVC framework is used to develop web applications that generates Views as well as data. ASP.NET MVC facilitates in rendering HTML easy.
+
+For ASP.NET MVC Interview Questions, follow the link.
+Back to top
+Answer this simple Question to test your skill? 
+Please look into following piece of code:
+
+[ActionName(“GetById”)] 
+public ActionResult GetEmployeeById()
+{
+//Code logic here.
+return View();
+}
+What’s true about the above code.
+A. “GetEmployeeById” action method with be identified and called by name “GetEmployeeById”.
+B. “GetEmployeeById” action method with be identified and called by name “GetById”.
+C. Above code will generate an error because of wrong return type.
+D. Action method can’t be called because of duplicate action method names.
+For a complete online test and Practice Exams on Web Technologies, Click Here.
+ Correct Answer: B
+How to return View from ASP.NET Web API method?
+(A tricky Interview Question) No, we can’t return view from ASP.NET Web API Method. As we discussed in earlier interview question about difference between ASP.NET MVC and Web API that ASP.NET Web API creates HTTP services that renders raw data. Although, it’s quite possible in ASP.NET MVC application.
+Back to top
+How to restrict access to Web API method to specific HTTP Verb?
+Attribute programming plays it’s role here. We can easily restrict access to an ASP.NET Web API method to be called using a specific HTTP method. For example, we may required in a scenario to restrict access to a Web API method through HTTP POST only as follows:
+
+
+Back to top
+Can we use Web API with ASP.NET Web Form?
+Yes, ASP.NET Web API is bundled with ASP.NET MVC framework but still it can be used with ASP.NET Web Form. It can be done in three simple steps as follows:
+Create a Web API Controller.
+Add a routing table to Application_Start method of Global.asax.
+Make a jQuery AJAX Call to Web API method and get data.
+jQuery call to Web API for all CRUD (Create, Retrieve, Update, Delete) operations can be found here.
+Back to top
+How we can provide an alias name for ASP.NET Web API action?
+We can provide an alias name for ASP.NET Web API action same as in case of ASP.NET MVC by using “ActionName” attribute as follows:
+ 
+ASP.NET Web API 2 Hands On
+Building RESTful Web Service using ASP.NET Web API2 taking from beginner level and learn how to use the new features of Web API2 i.e. Attribute Routing etc. More Details
+Back to top
+What are Exception Filters? What are different ways to register exception filters?
+Exception Filter is basically a class that implements IExceptionFilter interface. While working with ASP.NET Web API, there can be scenarios where the code can generate unhandled exceptions. And for those unhandled exceptions, client will be receiving same generic error i.e. “Internal Server Error”. In order to tackle such unhandled exceptions, Exception Filters can be used.
+You can follow here for a detailed article on Exception Handling in ASP.NET Web API with following implementation:
+What are Exception Filters in Web API?
+How we can create a Custom Exception Filter?
+How we can register Custom Exception Filter at different levels?
+We can register exception filters for ASP.NET Web API in following different levels:
+Register Exception Filter from action
+
+1
+2
+3
+4
+5
+[MyCustomExceptionFilter]
+public Student Get(string id)
+{
+   return StudentRepository.GetStudent(id);
+}
+Register Exception Filter from Controller
+
+1
+2
+3
+4
+5
+[MyCustomExceptionFilter]
+public class StudentsController : ApiController
+{
+   //Controller detailed code.
+}
+Register Exception Filter globally
+
+1
+2
+CRUDWebAPI.MyCustomExceptionFilter ctrlr = new CRUDWebAPI.MyCustomExceptionFilter(); 
+GlobalConfiguration.Configuration.Filters(ctrlr);
+Back to top
+How we can guarantee that our Web API returns JSON data only?
+In order to ensure that our ASP.NET Web API serialize the returning object to JSON format and returns JSON data only, we have to add following piece of code in WebApiConfig.cs class of our MVC Web API Project:
+
+1
+2
+3
+//JsonFormatter
+//MediaTypeHeaderValue
+Config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
+Back to top
+In this ASP.NET Web API Tutorial, we covered most important Interview Questions on ASP.NET Web API framework. Hopefully, it will be helpful for Web API developer Interview but along with these questions, do the practical implementation as much as you can. In Practical guide to ASP.NET Web API, you can find a good step by step approach for understanding and implementing ASP.NET Web API services
