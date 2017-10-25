@@ -145,3 +145,24 @@ To deploy SSIS package we need to execute the manifest files and need to determi
 Late Arriving Dimension are unavoidable, to handle these we can create a dummy dimensions with natural/business key and keep the rest of the attributes as null or default. So when actual dimension arrives, the dummy dimension is updated with Type 1 change. This is also referred as Inferred Dimensions.
 27) Explain how can you do an incremental load?
 The best and fastest way to do incremental load is by using Timestamp column in the source table and storing the last ETL timestamp.
+
+1. Which versions of SSIS have you used?
+Differences between versions in 2005 and 2008 were not very big so experience in 2005, 2008 or 2008 R2 is very similar. The big difference is with SQL Server 2000 compared to later versions. SQL Server 2000 used DTS and it very different from the technology used in the versions used today.
+2. Have you used SSIS Framework?
+This is common term in the SSIS world which just means that you have templates that are set up to perform routine tasks like logging, error handling, etc. If they answer yes, this would usually indicate an experienced person. A no answer is still fine if your project is not very mission critical or less complicated.
+3. Do you have experience working with data warehouses?
+SSIS is usually used for supporting a data warehouse environment, so knowledge of Data Warehouse design is very useful.
+4. How did you learn SSIS?
+How did the candidate learn what they know about SSIS? If they took a few classes, then they probably understand the concepts and techniques, but might have only used the features easily demonstrated in a classroom setting. If they have read a book or two on the subject, then they probably know a lot on the subject but may never have used the product outside of a sample database environment. They might have also read additional material not usually covered in a classroom setting, and have a more complete understanding of the overall capabilities of the product. If the only source of knowledge is from blog entries or internet articles, since the quality of that information can vary in quality, you might have to really question the candidate to better gauge their knowledge level. Knowledge gained through conference sessions is also a good source of quality knowledge, but direct experience is always best.
+5. Do you have any certifications?
+While certification is not a reliable indication of knowledge, it can indicate the candidate has the motivation to learn and the desire to demonstrate that knowledge. It also helps you understand the level of knowledge they are promoting so you can target your questions to the correct level.
+6. How many different source and destination types have you used?
+Common answers are SQL Server, CSV files, TXT files, Access tables, DB2 databases, Oracle databases, MySQL databases, web form scrapping, etc. You are looking for someone with the types of experiences that either fit your expected projects, or someone with experience that would indicate they could learn what is needed for your expected project requirements.
+7. What is your approach for loading data warehouses using an ETL?
+This is a open question around the general process used to develop an ETL solution in a production environment. Do they use one ETL to completely load all data, or do they use multiple jobs to load data to a series of staging tables? Do they load each ETL as part of a separate job, then load everything later as part of one job that moves the data from several staging tables into FACT tables.
+8. What types of transformations you have worked with in SSIS?
+The most common are: Derived Column, Aggregate, Conditional Split, Sort, Lookup, Merge Join and Union All.
+9. How can you deploy a new SSIS Package (or Project)?
+In previous versions of SSIS it could done either manually (or from BIDS using BIDS Helper) or using scripts. You might prefer SSIS 2012 with Deployment Wizard although you have to deploy the entire project with ALL packages so an extra step to control which packages are changed is recommended.
+10. What is the difference between Control Flow and Data Flow?
+Control Flow manages the flow of tasks in a package, but Data Flow most frequently moves data from Point A to Point B.
