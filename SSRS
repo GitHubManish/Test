@@ -57,3 +57,46 @@ There is no out-of-box support in SSRS to automate reports deployment, but free 
 Drill-down is a mechanism of decomposing summarized information to a detailed level. 
 Drill-through is a mechanism of decomposing the problem by drilling information generally using more than one report.
 
+Question: What does rdl stand for?
+Answer: Report Definition Language
+
+Question: How to deploy an SSRS Report?
+Answer: Configure project properties (for multiple environments) and deploy from bids, upload manually or use rs.exe for command line deployment.
+
+Question: What is Report Manager?
+Answer: Web based tool that allows to access and run reports.
+
+Question: What is Report Builder?
+Answer: Report Builder is a self-service tool for end users.
+Question: What permission do you need to give to users to enable them to use Report Builder?
+Answer: "Report Builder" role and "system user". Report builder should also be enable in report server properties.
+Question: What do you need to restore report server database on another machine?
+Answer: SSRS Encryption key
+Question: Can you create subscription using windows authentication?
+Answer: No.
+Question: What caching options do you have for reports on report server?
+Answer: Do no cache, expiry cache after x minute, on schedule.
+Question: How to find slow running reports?
+Answer: Using ReportServer database (default name) query ExecutionLogStorage table. There are 3 fields related to performance: TimeDataRetrieval, TimeProcessing and TimeRendering.
+Question: How can you make calendar available in report parameter?
+Answer: Set parameter data type to date.
+Question: How to pass multi-valued parameter to stored procedure in dataset?
+Answer: Join function in SSRS and split function in T-SQL
+Question: Which functions are used to pass parameter to MDX query?
+Answer: StrToMember and StrToSet
+Question: How to create "dependant" parameter "Make, Model, Year"
+Answer: They need to be in correct order, and previous parameter should filter next parameter dataset. For instance Model dataset should be filtered using Make parameter
+Question: How to create "alternate row colour"?
+Answer: use RowNumber and Mod function OR visit our tutorial.
+Question: How to create percentile function?
+Answer: Custom code is required. Visit our tutorial for more details.
+Question: How to create median function?
+Answer: Custom code is required. Visit our tutorial for more details.
+Question: How to make conditional sum in SSRS?
+Answer: IIF condition true then SUM else nothing. Visit our tutorial for more details
+Question: How to find a value in another dataset based on current dataset field (SSRS 2008 R2)?
+Answer: Use lookup function.
+Question: How to change parameter value inside the report?
+Answer: Set action. "Jump to itself" and pass different value for the parameter.
+Question: How to identify current user in SSRS Report?
+Answer: User!UserID
