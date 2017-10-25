@@ -1,0 +1,81 @@
+
+1. What are common name restriction on tables and columns?
+DBMS table and column names under SQL Server 2000 have a 1 through 128-byte limit and follow the rules established for identifiers.
+The first character must be one of the following:
+A letter as defined by the Unicode Standard 2.0
+The Unicode definition of letters includes Latin characters from A through Z in addition to letter characters from other languages.
+The underscore (_), "at" sign (@) or number sign (#)
+Certain symbols at the beginning of an identifier have special meaning in SQL Server. An identifier beginning with the "at" sign denotes a local variable or parameter. An identifier beginning with a number sign denotes a temporary table or procedure. An identifier beginning with double number signs (##) denotes a global temporary object.
+Some Transact-SQL functions have names that start with double at signs (@@). To avoid confusion with these functions, it is recommended that you do not use names that start with @@.
+Subsequent characters can be any of the following:
+Letters as defined in the Unicode Standard 2.0
+Decimal numbers from either Basic Latin or other national scripts
+The "at" sign, dollar sign ($), number sign, or underscore
+The identifier must not be a Transact-SQL reserved word. SQL Server reserves both the uppercase and lowercase versions of reserved words. Embedded spaces or special characters are not allowed although you will see these objects in good old Northwind with names that include embedded spaces. You'll have to access them by enclosing them in brackets.
+Joe Toscano, Integration Services/Development Expert
+
+2. Is it possible to write stored procedures without knowing T-SQL?
+As a result of Microsoft's ambitious marketing of SQL Server 2005's .NET integration over the last few years, many developers believe that T-SQL will no longer be necessary to create SQL Server stored procedures. Unfortunately (or not, depending on your point of view), this is only partially true. While it is technically possible to create a stored procedure without using T-SQL, it is not possible to do any data access without T-SQL.
+Data access within CLR stored procedures is done using the standard ADO.NET classes. Developers will find that much of the same data access code usable in application tiers will be easily portable into SQLCLR routines. As these ADO.NET classes in the middle tier require T-SQL for data access, so do the same classes used within the context of the hosted CLR provider.
+I noted that it is technically possible to write a T-SQL-less stored procedure. So is there any reason to do so? One case for this is a CLR stored procedure written to retrieve data from a flat file or Web service and format it into a rowset. That would be an operation that would not require T-SQL – but it's not a good comparison with the abilities of T-SQL stored procedures.
+Adam Machanic, SQL Server 2005 Expert
+
+3. How do CLR stored procedures and functions perform compared to those in T-SQL?
+Here is the general performance rule when comparing T-SQL routines to equivalent CLR routines: Test both configurations with your data on your servers and figure out which one is better.
+That said, many people have run performance tests and the general consensus is that T-SQL will always perform better for standard CRUD (Create, Read, Update, Delete) operations, whereas CLR code will perform better for complex math, string manipulation and other tasks that go beyond data access.
+SQL Server MVP Gustavo Larriera has compiled the following list of useful links with more information on this topic:
+Using CLR Integration in SQL Server 2005
+An Intro to CLR Integration in SQL Server 2005
+Choosing Between the CLR and T-SQL in SQL Server 2005
+Introducing SQL Server 2005's CLR Integration
+SQL Server Chat: SQL Server 2005 Beta 2 CLR Q&A
+DBAs Bar Door Against Big Bad .NET Wolf
+User Defined Function performance comparison
+
+Adam Machanic, SQL Server 2005 Expert
+
+4. How can I use results from one stored procedure in another stored procedure?
+So long as the stored procedure produces only a single result, the technique for using the output of one stored procedure in another is pretty straightforward. The technique is to use a temporary table to hold the results of the stored procedure and an INSERT EXEC statement to execute the sproc and save the results. Once the results are in the temporary table they can be used like any other table data.
+Here's an example procedure that we might like to reuse:
+ CREATE PROC usp_Demo_AllAuthors as select * from pubs..authors GO
+Now here's a stored procedure that uses the results of usp_Demo_AllAuthors:
+ CREATE proc usp_Demo_SPUser as CREATE TABLE #Authors ( au_id varchar(11) NOT NULL PRIMARY KEY CLUSTERED, au_lname varchar (40) NOT NULL , au_fname varchar (20) NOT NULL , phone char (12) NOT NULL, address varchar (40) NULL , city varchar (20) NULL , state char (2) NULL , zip char (5) NULL , contract bit NOT NULL ) -- Execute usp_Demo_AllAuthors storing the -- results in #Authors insert into #Authors exec usp_Demo_AllAuthors -- Here we use the #Authors table. This example only -- only selects from the temp table but you could do much -- more such as use a cursor on the table or join with -- other data. SELECT au_fName + ' ' + au_lname as [name] , address+', '+city+', '+state+' '+zip [Addr] from #Authors DROP TABLE #Authors GO
+
+Andrew Novick, SQL Server Expert
+
+5. How can I resolve concurrency problems in SQL Server 2005?
+I'm having a concurrency problem in SQL Server 2005. There are a number of free seats on the bus that I sell tickets to. Before inserting a sold ticket I need to check whether there are any free seats left. My stored procedure does something like this:
+CREATE PROCEDURE add_ticket -- parameters DECLARE free_seats int BEGIN TRANSACTION SELECT free_seats = COUNT(*) FROM tickets WHERE seat_is_not_taken IF free_seats <> 0 INSERT INTO tickets VALUES(...) -- some other statements END TRANSACTION
+The problem is that two processes can read the amount of free tickets concurrently and both save a ticket, even if there are no free seats left. I need a way to block processes from reading the amount of free tickets while other processes running the add_ticket procedure have not yet inserted a new ticket. SET TRANSACTION ISOLATION LEVEL does not help in this situation, am I right?
+You are correct; a higher isolation level would not help ensure that multiple readers did not read the same rows simultaneously. However, there are several ways you could make this work. For instance, you could assign each seat a unique identifier (meaning, a unique key – not necessarily a GUID) and create a table for seats that have already been taken. Put a UNIQUE constraint on the table and you will be guaranteed that no seat is inserted twice.
+That said, I think a more interesting option might be to employ SQL Service Broker. You could set up a conversation for each bus, and store the conversation handles in a table that can be referenced by readers before doing the RECEIVE. That way, the readers can filter appropriately. Drop a message into the queue for each seat on the bus. The readers can then simply RECEIVE the messages as needed (in the process, reserving seats on the bus). Service Broker will ensure that no message is received twice, meaning that you will no longer have any concurrency problems.
+Adam Machanic, SQL Server 2005 Expert
+
+6. What is Query Analyzer's replacement in SQL Server 2005?
+Both Query Analyzer and Enterprise Manager are gone from SQL Server 2005. In their place is a single tool, SQL Server Management Studio. This tool has most of the features of its predecessors, but with an upgraded UI and a lot of improved functionality. I think that most DBAs will find it to be a good upgrade. If you'd like more information on some of the new features with this tool, read my article on SQL Server Management Studio client tool enhancements.
+Adam Machanic, SQL Server 2005 Expert
+
+7. Could you provide some detailed information about SQL vs. T-SQL?
+SQL is the Structured Query Language, the ANSI/ISO Standard database language. SQL Server's implementation of the language is called Transact-SQL (T-SQL). T-SQL is based primarily on the version of the ISO standard released in 1992, with bits added from the 1999 standard. In addition, various proprietary enhancements have been made by Microsoft.
+There are a number of differences between Standard SQL and T-SQL -- too many to name here. And, yes, there are advantages to using the proprietary extensions if you are working with SQL Server. Due to the nature of many of SQL Server's features, you simply cannot harness its full power without using some nonstandard commands. If you'd like to find out whether your SQL conforms to the standard, you can use the SET FIPS_FLAGGER command.
+Adam Machanic, SQL Server 2005 Expert
+
+8. Does SQL Server 2005 have any new index types?
+SQL Server 2005 does not introduce new index types for relational tables. The basic -- clustered and non-clustered indexes implemented as B-trees -- still apply. However, SQL Server 2005 does include indexing enhancements both for Full Text Indexing and for XML data, as well as enhancements that ease some problems associated with relational indexing.
+SQL Server 2005's Full Text Indexing feature is completely new and rewritten. For information on this feature, watch Nimish Khanolkar's archived MSDN webcast, Introducing Full-Text Search in SQL Server 2005.
+XML has also undergone a drastic transformation in the way it is treated in SQL Server 2005. There is now a first-class XML data type available to developers. The type supports the XQuery query language, and columns using the type can be indexed using a special form of XML indexes. More information on the XML type can be found in this MSDN article.
+A variety of enhancements have been made to the T-SQL relational indexing commands. Perhaps the most interesting of these is the new "online" indexing mode, which allows database administrators to perform index maintenance tasks without locking users out of tables. This hopefully marks the beginning of the end of database administrators having to wait for the 3:00 a.m. maintenance window to fix database issues! More information on this feature can be found in this SQL Server Worldwide Users Group article.
+Adam Machanic, SQL Server 2005 Expert
+
+9. How can I create a script for row selection in a table?
+Does the table have a primary key? That would make the query easier. Otherwise, I think you're after something like this:
+SELECT prod_key,item_key,pack_key,last_sale
+FROM (SELECT item_key,pack_key,MAX(last_sale) AS last_sale FROM tablex GROUP BY item_key,pack_key) AS MaxDateTable
+WHERE tablex.item_key = MaxDateTable.item_key
+AND tablex.pack_key = MaxDateTable.pack_key
+AND tablex.last_sale = MaxDateTable.last_sale
+Greg Low, Development Expert
+
+10. How can I list out database tables which have no records?
+You can make your solution more flexible by grabbing the table names from the sysobjects table:
+ declare @strsql varchar(256) create table #emptytables (tablename varchar(128), table_rowcount int) select @strsql='select distinct o.name as TableName, x.rowcnt as Table_RowCount from sysobjects o inner join sysindexes x on o.id = x.id where x.rowcnt = 0 and o.type = ''U''' insert #emptytables (TableName, Table_rowcount) exec (@strsql) select * from #emptytables drop table #emptytables
