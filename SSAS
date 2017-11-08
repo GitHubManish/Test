@@ -29,13 +29,13 @@ What is Impersonation? What are the different impersonation options available in
 Impersonation allows SSAS to assume the identity/security context of the client application which is used by SSAS to perform the server side data operations like data access, processing etc. 
 
 As part of impersonation, the following options are available in SSAS:
-Use a specific Windows user name and password: This option lets you to specify Windows account credentials which will be used by SSAS to perform operations like source data access, processing etc.
+## Use a specific Windows user name and password: This option lets you to specify Windows account credentials which will be used by SSAS to perform operations like source data access, processing etc.
 
-##Use the service account:## When this option is selected, SSAS uses the credentials of the service account under which the Analysis Services service is configured/running for source data access, processing etc.
+## Use the service account:## When this option is selected, SSAS uses the credentials of the service account under which the Analysis Services service is configured/running for source data access, processing etc.
 
-##Use the credentials of the current user:## When this option is set, SSAS uses the credentials of the current user for performing operations like DMX Open Queries, Local cubes etc. This option cannot be used for performing server side operations like source data access, processing etc.
+## Use the credentials of the current user:## When this option is set, SSAS uses the credentials of the current user for performing operations like DMX Open Queries, Local cubes etc. This option cannot be used for performing server side operations like source data access, processing etc.
 
-##Inherit:## This option let's the SSAS server decide which impersonation mode is suitable for each type of operation. When this option is set, by default SSAS will use the service account for operations like processing and the credentials of the current user for operations like Local cubes, querying the data mining models, etc...
+## Inherit:## This option let's the SSAS server decide which impersonation mode is suitable for each type of operation. When this option is set, by default SSAS will use the service account for operations like processing and the credentials of the current user for operations like Local cubes, querying the data mining models, etc...
 
 What is a Data Source View?
 A Data Source View (DSV) is a logical view of the underlying database schema and offers a layer of abstraction for the underlying database schema. This layer acts as a source for SSAS and captures the schema related information from the underlying database. 
